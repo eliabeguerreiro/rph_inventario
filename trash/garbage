@@ -1,0 +1,15 @@
+CREATE TABLE `itens` ( 
+    `id_item` INT NOT NULL AUTO_INCREMENT ,
+    `serial` VARCHAR(100) DEFAULT NULL , 
+    `modelo` VARCHAR(100) NOT NULL , 
+    `marca` VARCHAR(100) NOT NULL ,
+    `data_compra` DATE NOT NULL ,
+    `status` VARCHAR(100) NOT NULL ,
+    `local` VARCHAR(50) NOT NULL , 
+    PRIMARY KEY (`id_item`)) ENGINE = MyISAM DEFAULT CHARSET=latin1;
+
+
+
+$senha = "000000";
+$senha_encriptada = password_hash($senha, PASSWORD_DEFAULT);
+echo($senha_encriptada.'<br>');

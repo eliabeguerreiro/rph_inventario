@@ -63,12 +63,12 @@ body button:active {
     font-weight: 800;
 }
 
-.email-container {
+.login-container {
     display: flex;
     flex-direction: column;
 }
 
-.email-container input {
+.login-container input {
     padding-left: 10px;
     background-color: #fdfdfd;
 
@@ -117,6 +117,7 @@ body button:active {
 .login-name {
     font-size: 50px;
     font-weight: 700;
+    margin-bottom: 2.5rem;
 }
 
 .text-container {
