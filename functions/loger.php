@@ -27,7 +27,7 @@ if($_POST){
           $_SESSION['usuario']['id_usuario'] = $row_user['id_user'];
           $_SESSION['usuario']['login'] = $row_user['usuario'];
           $_SESSION['msg'] = "Bem Vindo!";
-          header("Location:panel/");
+          header("Location:../panel/index.php");
           
         }else{
           $_SESSION['msg'] = "Login ou senha incorretos!";
