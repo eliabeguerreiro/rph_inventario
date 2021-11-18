@@ -25,7 +25,7 @@ if(isset($_SESSION['msg'])){
       <div class="text-container">
         <img src="./images/logo.png" alt="Logo">
         <h1 class="login-name">Área de Login</h1>
-        <h3>Efetue o seu login para processeguir</h3>
+        <h3>Efetue o seu login para prosseguir</h3>
       </div>
 
       <form method="POST" action="functions/loger.php">

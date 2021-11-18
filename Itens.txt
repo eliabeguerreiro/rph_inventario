@@ -1,0 +1,16 @@
+Os Itens terão os seguintes metadados:
+	ID, identificador, local, tipo, modelo e data de compra.
+
+
+Tipos: Desktop, monitor, equipamento_rede, nobrake, leitor, impressora, equipamento_audiovisual.
+
+
+Observações: 
+
+O Id é gerado automáticamente;
+
+O indentificador é definido por uma letra e um numero(mais de um digito), que pode ser o numero mac, serial ou um numero aleatorio(que seja unico e que esteja impresso no equipamento).
+
+O local será constituido por uma letra e dois digitos e será um dado que pode ser alterado ex:R10;
+
+O modelo será padronizado em marca + modelo. Ex: (hp officejet pro 6970/ lg flatron 24bl550j-b)
