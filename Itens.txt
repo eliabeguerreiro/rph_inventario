@@ -14,3 +14,9 @@ O indentificador é definido por uma letra e um numero(mais de um digito), que po
 O local será constituido por uma letra e dois digitos e será um dado que pode ser alterado ex:R10;
 
 O modelo será padronizado em marca + modelo. Ex: (hp officejet pro 6970/ lg flatron 24bl550j-b)
+
+
+
+
+
+QR_CODE: 11x9   90 por 115 mm
