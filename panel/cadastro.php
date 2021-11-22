@@ -104,7 +104,7 @@ if($_POST){
                     <a href="cadastro.php">Cadastro</a>
                 </li>
                 <li>
-                    <a href="#">Escanear</a>
+                    <a href="#">Leitor</a>
                 </li>
                 <br>
             </ul>

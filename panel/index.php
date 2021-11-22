@@ -23,10 +23,8 @@ echo("Usuario Logado: ".$_SESSION['usuario']['login']);
 */
 
 if(!$_SESSION['usuario']['nome']){
-
-echo "<center><div class='alert alert-danger' role='alert'>";
-echo("Usuario sem nome cadastrado - Atualize seu perfil!");
-echo"</div></center>";
+  $_SESSION['msg'] = "Usuario sem cadastro necessário atualizar o perfil!";
+  header("Location: caract.php");
  
 }
 
@@ -94,7 +92,7 @@ echo"</div></center>";
                     <a href="cadastro.php">Cadastro</a>
                 </li>
                 <li>
-                    <a href="#">Escanear</a>
+                    <a href="#">Leitor</a>
                 </li>
                 <br>
             </ul>
