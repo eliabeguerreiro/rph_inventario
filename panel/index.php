@@ -20,6 +20,24 @@ if(isset($_SESSION['msg'])){
 
 echo("Usuario Logado: ".$_SESSION['usuario']['login']);
 
+
+
+$SendPesqItem = filter_input(INPUT_POST, 'SendPesqItem', FILTER_SANITIZE_STRING);
+
+if($SendPesqItem){
+
+  $pesquisa = filter_input(INPUT_POST, 'id_pesquisa', FILTER_SANITIZE_STRING);
+  $result_pesquisa = "SELECT * FROM itens WHERE id_item LIKE '%$pesquisa%'";
+  $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);
+  while ($row_usuario = mysqli_fetch_assoc($resultado_pesquisa)){
+    echo " ID: ".$row_usuario['id']."<br>";
+    echo " ID: ".$row_usuario['loja']."<br>";
+    echo " ID: ".$row_usuario['id']."<br>";
+  }
+
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +57,7 @@ echo("Usuario Logado: ".$_SESSION['usuario']['login']);
         <form method='POST' action="">
             <input type="text" name='id_pesquisa' placeholder='Digite o ID do item'>
 
-            <input type="button" name='SendPesqItem' value="Pesquisar">
+            <input type="submit" name='SendPesqItem' value="Pesquisar">
         </form>
 
 
@@ -61,21 +79,6 @@ echo("Usuario Logado: ".$_SESSION['usuario']['login']);
 </html>
 
 <?php
-
-$SendPesqUser = filter_input(INPUT_POST, 'SendPesqItem', FILTER_SANITIZE_STRING);
-
-if($SendPesqUser){
-  $pesquisa = filter_input(INPUT_POST, 'id_pesquisa', FILTER_SANITIZE_STRING);
-  $result_pesquisa = "SELECT * FROM usuario WHERE nome LIKE '%$pesquisa%'";
-  $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);
-  while ($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
-    echo "ID: ".$row_usuario['id']."<br>";
-
-  }
-
-}
-
-
 
 //logoff da sistema
 if($_GET){

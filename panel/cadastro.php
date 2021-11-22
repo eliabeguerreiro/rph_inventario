@@ -4,42 +4,49 @@ include("../functions/connection.php");
 include("../functions/fun.php");
 
 //coletando dados do formulario
-$dados = $_POST;
+if($_POST){
+    
+    $dados = $_POST;
 
-//criando o ID_ITEM
-$sql_cont = "SELECT * FROM `itens`";
-$sql_controle = mysqli_query($conn, $sql_cont);
-$total = mysqli_num_rows($sql_controle);
-$controle = $total + 1;
-if($controle < 10){
-    $ctrl = $_SESSION['usuario']['id_usuario']."0000".$controle; 
-   
-}elseif($controle < 100){
-    $ctrl = $_SESSION['usuario']['id_usuario']."000".$controle; 
+    //criando o ID_ITEM
+    $sql_cont = "SELECT * FROM `itens`";
+    $sql_controle = mysqli_query($conn, $sql_cont);
+    $total = mysqli_num_rows($sql_controle);
+    $controle = $total + 1;
+    if($controle < 10){
+        $ctrl = $_SESSION['usuario']['id_usuario']."0000".$controle; 
     
-}elseif($controle < 1000){
-    $ctrl = $_SESSION['usuario']['id_usuario']."00".$controle; 
-    
-}elseif($controle < 10000){
-    $ctrl = $_SESSION['usuario']['id_usuario']."0".$controle; 
+    }elseif($controle < 100){
+        $ctrl = $_SESSION['usuario']['id_usuario']."000".$controle; 
+        
+    }elseif($controle < 1000){
+        $ctrl = $_SESSION['usuario']['id_usuario']."00".$controle; 
+        
+    }elseif($controle < 10000){
+        $ctrl = $_SESSION['usuario']['id_usuario']."0".$controle; 
+    }
+
+
+    //Fazendo upload dos dados pro BD
+    $upload_item = "INSERT INTO itens (id_item, identificador, tipo, data_compra, loja, modelo) 
+    VALUES('" .$ctrl. "','" .$dados['identificador']. "','" .$dados['tipo']. "',
+    '" .$dados['data_c']. "','R" .$dados['loja']. "','" .$dados['modelo']. "');";
+    $upload = mysqli_query($conn, $upload_item);
+
+    if(mysqli_insert_id($conn)){
+        $_SESSION['msg'] = "Item ".$dados['tipo']." cadastrado com sucesso";
+    }
+
+    $aux = 'qr_img0.50j/php/qr_img.php?';   
+    $aux .= 'd='.$ctrl.'&';
+    $aux .= 'e=H$';
+    $aux .= 's=10$';
+    $aux .= 't=P';
 }
 
 
-//Fazendo upload dos dados pro BD
-$upload_item = "INSERT INTO itens (id_item, identificador, tipo, data_compra, loja, modelo) 
-VALUES('" .$ctrl. "','" .$dados['identificador']. "','" .$dados['tipo']. "',
-'" .$dados['data_c']. "','R" .$dados['loja']. "','" .$dados['modelo']. "');";
-$upload = mysqli_query($conn, $upload_item);
 
-if(mysqli_insert_id($conn)){
-    $_SESSION['msg'] = "Item ".$dados['tipo']." cadastrado com sucesso";
-}
 
-$aux = 'qr_img0.50j/php/qr_img.php?';   
-$aux .= 'd='.$ctrl.'&';
-$aux .= 'e=H$';
-$aux .= 's=10$';
-$aux .= 't=P';
 ?>
 
 <!DOCTYPE html>
@@ -105,13 +112,13 @@ $aux .= 't=P';
                     <div>
                         <select name="modelo">
                             <option value="">Selecione o modelo</option>
-                            <option value="01">Desktop</option>
-                            <option value="02">Monitor</option>
-                            <option value="03">Equipamento de Rede</option>
-                            <option value="04">Nobrake</option>
-                            <option value="05">Leitor</option>
-                            <option value="06">Impressora</option>
-                            <option value="07">Equipamento Audiovisual</option>
+                            <option value="desktop">Desktop</option>
+                            <option value="monitpr">Monitor</option>
+                            <option value="equipamento_rede">Equipamento de Rede</option>
+                            <option value="nobrake">Nobrake</option>
+                            <option value="leitor">Leitor</option>
+                            <option value="impressora">Impressora</option>
+                            <option value="equipamento_audiovisual">Equipamento Audiovisual</option>
                         </select>
                     </div>
 
