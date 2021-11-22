@@ -1,7 +1,7 @@
 <?php
 
 function msg_sistem ($msg){    
-    echo "<div class='alert alert-danger' role='alert'>";
+    echo "<div class='alert alert-warning' role='alert'>";
     echo $_SESSION['msg'];
     echo"</div>";
         }

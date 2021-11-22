@@ -26,6 +26,9 @@ if($_POST){
           //criando sessão do usuario
           $_SESSION['usuario']['id_usuario'] = $row_user['id_user'];
           $_SESSION['usuario']['login'] = $row_user['usuario'];
+          $_SESSION['usuario']['nome'] = $row_user['nome'];
+          $_SESSION['usuario']['tipo'] = $row_user['tipo'];
+          
           $_SESSION['msg'] = "Bem Vindo!";
           header("Location:../panel/index.php");
           
