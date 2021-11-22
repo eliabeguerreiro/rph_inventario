@@ -20,24 +20,6 @@ if(isset($_SESSION['msg'])){
 
 echo("Usuario Logado: ".$_SESSION['usuario']['login']);
 
-
-
-$SendPesqItem = filter_input(INPUT_POST, 'SendPesqItem', FILTER_SANITIZE_STRING);
-
-if($SendPesqItem){
-
-  $pesquisa = filter_input(INPUT_POST, 'id_pesquisa', FILTER_SANITIZE_STRING);
-  $result_pesquisa = "SELECT * FROM itens WHERE id_item LIKE '%$pesquisa%'";
-  $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);
-  while ($row_usuario = mysqli_fetch_assoc($resultado_pesquisa)){
-    echo " ID: ".$row_usuario['id']."<br>";
-    echo " ID: ".$row_usuario['loja']."<br>";
-    echo " ID: ".$row_usuario['id']."<br>";
-  }
-
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +28,7 @@ if($SendPesqItem){
 <head>
     <meta charset="utf-8">
     <title>Painel Principal - Inventario</title>
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
@@ -74,11 +56,55 @@ if($SendPesqItem){
         </button>
     </a>
 
+
+
+
+    <video id="webcam"></video>
+
+
+<script src="instascan.min.js"></script>
+<script>
+  const scanner = new Instascan.Scanner({
+    video: document.getElementById('webcam')
+  })
+  scanner.addListener('scan', content => {
+    console.log(content)
+  })
+  Instascan.Camera.getCameras().then( cameras => {
+    if(cameras.length > 0){
+      scanner.start(cameras[0])
+    }
+  })
+
+
+
+</script>
+
 </body>
 
 </html>
 
 <?php
+
+$SendPesqItem = filter_input(INPUT_POST, 'SendPesqItem', FILTER_SANITIZE_STRING);
+
+if($SendPesqItem){
+
+  $pesquisa = filter_input(INPUT_POST, 'id_pesquisa', FILTER_SANITIZE_STRING);
+  $result_pesquisa = "SELECT * FROM itens WHERE id_item LIKE '%$pesquisa%'";
+  $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);
+  while ($row_usuario = mysqli_fetch_assoc($resultado_pesquisa)){
+    echo("<br>--------------------------------------------------------------<br>");
+    echo " ID: ".$row_usuario['id_item']."<br>";
+    echo " Loja: ".$row_usuario['loja']."<br>";
+    echo " Código Identificador: ".$row_usuario['identificador']."<br>";
+    echo " Data de Registro: ".$row_usuario['data_compra']."<br>";
+    echo("--------------------------------------------------------------<br>");
+
+  }
+
+}
+
 
 //logoff da sistema
 if($_GET){
