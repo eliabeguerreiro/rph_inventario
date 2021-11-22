@@ -35,7 +35,7 @@ if(mysqli_insert_id($conn)){
     $_SESSION['msg'] = "Item ".$dados['tipo']." cadastrado com sucesso";
 }
 
-$aux = 'qr_img0.50j/php/qr_img.php?';
+$aux = 'qr_img0.50j/php/qr_img.php?';   
 $aux .= 'd='.$ctrl.'&';
 $aux .= 'e=H$';
 $aux .= 's=10$';
@@ -70,7 +70,7 @@ $aux .= 't=P';
                 </button>
             </a>
             <br><br>
-
+            
 
             <div class="jumbotron form-group">
                 <form method="POST" action="" enctype="multipart/form-data">
@@ -97,7 +97,7 @@ $aux .= 't=P';
                     <div class="col-md-4">
                         <input class="form-control" type="text" name="tipo" placeholder="Digite o modelo do item">
                         <small id="emailHelp" class="form-text text-muted">O modelo será padronizado em marca + modelo.
-                            Ex: hp officejet pro 6970 lg flatron 24bl550j-b)</small>
+                            Ex: hp officejet pro 6970 | lg flatron 24bl550j-b</small>
                     </div>
                     <br>
 
