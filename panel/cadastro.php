@@ -138,7 +138,7 @@ if($_POST){
             </div>
 
 
-            <div class="form-group" style="padding: 20px;">
+            <div class="form-group" style="padding: 20px 20px 170px 20px;">
                 <center>
                     <?php    
                     if(isset($_SESSION['msg'])){

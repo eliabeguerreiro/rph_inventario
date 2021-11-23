@@ -128,7 +128,8 @@ if(!$_SESSION['usuario']['nome']){
                 <table id="customers">
                     <tbody>
                         <tr>
-                            <th>Inventário</th>
+                            
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -165,29 +166,28 @@ if(!$_SESSION['usuario']['nome']){
 
                     </tbody>
                 </table>
+                <!-- Footer -->
+                <footer class="text-center " style="background-color: #f39822">
+                    <!-- Grid container -->
+                    <div class="container p-4">
+                        <!-- Section: Text -->
+
+                        <!-- Section: Links -->
+
+                    </div>
+                    <!-- Grid container -->
+
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: #f38022">
+                        © 2021 Redepharma -
+                        <a class="text-dark" href="https://github.com/eliabeguerreiro">Eliabe Paz</a> & <a
+                            class="text-dark" href="https://github.com/kcaiosouza">Caio Souza</a>
+                    </div>
+                    <!-- Copyright -->
+
+                </footer>
+                <!-- Footer -->
             </div>
-
-            <!-- Footer -->
-            <footer class="text-center " style="background-color: #f39822">
-                <!-- Grid container -->
-                <div class="container p-4">
-                    <!-- Section: Text -->
-
-                    <!-- Section: Links -->
-
-                </div>
-                <!-- Grid container -->
-
-                <!-- Copyright -->
-                <div class="text-center p-3" style="background-color: #f38022">
-                    © 2021 Redepharma -
-                    <a class="text-dark" href="https://github.com/eliabeguerreiro">Eliabe Paz</a> & <a class="text-dark"
-                        href="https://github.com/kcaiosouza">Caio Souza</a>
-                </div>
-                <!-- Copyright -->
-
-            </footer>
-            <!-- Footer -->
         </div>
 
         <!-- jQuery CDN - Slim version (=without AJAX) -->
