@@ -37,15 +37,16 @@ if($_POST){
         $_SESSION['msg'] = "Item ".$dados['tipo']." cadastrado com sucesso";
     }
 
-    //qr code
-    $aux = 'qr_img0.50j/php/qr_img.php?';   
-    $aux .= 'd='.$ctrl.'&';
+    
+    
+}
+
+//qr code
+$aux = 'qr_img0.50j/php/qr_img.php?';   
+    $aux .= 'd=QUALQUER COISA&';
     $aux .= 'e=H$';
     $aux .= 's=10$';
     $aux .= 't=P';
-}
-
-
 
 
 ?>
@@ -146,7 +147,7 @@ if($_POST){
                 unset($_SESSION['msg']);
                 }
                 ?>
-                </center>
+                
                 <form method="POST" action="" enctype="multipart/form-data">
 
                     <label>Identificador</label>
@@ -202,6 +203,7 @@ if($_POST){
                     <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
 
                 </form>
+                </center>
             </div>
             <!-- Footer -->
             <footer class="text-center " style="background-color: #f39822">
@@ -228,7 +230,9 @@ if($_POST){
 
 
     </div>
-
+<?php
+    echo("<img src='$aux' alt=''>");
+?>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

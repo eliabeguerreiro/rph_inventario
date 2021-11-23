@@ -128,7 +128,7 @@ if(!$_SESSION['usuario']['nome']){
                 <table id="customers">
                     <tbody>
                         <tr>
-                            
+
                             <th></th>
                             <th></th>
                             <th></th>
