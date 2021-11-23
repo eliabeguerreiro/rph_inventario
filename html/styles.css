@@ -192,3 +192,15 @@ ul ul a {
   td {
     font-size: 0.875rem;
   }
+
+  footer {
+    bottom: 0px;
+    position: fixed;
+    flex: auto;
+    width: 100%;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+  }
