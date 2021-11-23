@@ -19,8 +19,8 @@ if(isset($_SESSION['msg'])){
 echo("<div class='jumbotron'>");
 var_dump($_SESSION['usuario']);
 echo("</div><br>");
-echo("Usuario Logado: ".$_SESSION['usuario']['login']);
 */
+
 
 if(!$_SESSION['usuario']['nome']){
   $_SESSION['msg'] = "Usuario sem cadastro necessário atualizar o perfil!";
@@ -86,7 +86,7 @@ if(!$_SESSION['usuario']['nome']){
                     <a data-toggle="modal" data-target="#myModal">Sair</a>
                 </li>
                 <li>
-                    <a href="../index.html">Início</a>
+                    <a href="index.php">Início</a>
                 </li>
                 <li>
                     <a href="cadastro.php">Cadastro</a>
@@ -122,55 +122,94 @@ if(!$_SESSION['usuario']['nome']){
             </div>
 
         </div>
-        <?php
-          $SendPesqItem = filter_input(INPUT_POST, 'SendPesqItem', FILTER_SANITIZE_STRING);
 
-          if($SendPesqItem){
-          
-            $pesquisa = filter_input(INPUT_POST, 'id_pesquisa', FILTER_SANITIZE_STRING);
-            $result_pesquisa = "SELECT * FROM itens WHERE id_item LIKE '%$pesquisa%'";
-            $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);
-            echo("<div class='card' style='width: 18rem;'>
-            <ul class='list-group list-group-flush'>");
-            while ($row_usuario = mysqli_fetch_assoc($resultado_pesquisa)){
-          
-              echo("
-              <li class='list-group-item'> ID: ".$row_usuario['id_item'].
-              "  Identificador: ".$row_usuario['identificador'].
-              "  Loja: ".$row_usuario['identificador']."
-               <button type='button' class='btn btn-primary'>Editar</button>
-               <button type='button' class='btn btn-danger'>Apagar</button>
-               </li>
-              ");
-              
-              echo("
-              </ul>
-          </div>
-          <br>
-          ");
-            }
-          }
-        ?>
+        <div class="content" style="flex: auto;">
+            <div class="tabela-inventario">
+                <table id="customers">
+                    <tbody>
+                        <tr>
+                            <th>Inventário</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <?php
+                    $SendPesqItem = filter_input(INPUT_POST, 'SendPesqItem', FILTER_SANITIZE_STRING);
 
-        <!-- jQuery CDN - Slim version (=without AJAX) -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-        </script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous">
-        </script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous">
-        </script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-            $('#sidebarCollapse').on('click', function() {
-                $('#sidebar').toggleClass('active');
-            });
+                    if($SendPesqItem){
+                    
+                        $pesquisa = filter_input(INPUT_POST, 'id_pesquisa', FILTER_SANITIZE_STRING);
+                        $result_pesquisa = "SELECT * FROM itens WHERE id_item LIKE '%$pesquisa%'";
+                        $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);
+                        while ($row_usuario = mysqli_fetch_assoc($resultado_pesquisa)){
+                    
+                        echo("
+                        <tr>
+                            <td>ID: ".$row_usuario['id_item']."</td>
+                            <td>Identificador: ".$row_usuario['identificador']."</td>  
+                            <td>Loja: ".$row_usuario['loja']."</td>
+                            <td>Modelo: ".$row_usuario['modelo']."</td>
+                            <td></td>
+
+                            <td> <button type='button' class='btn btn-primary'>Editar</button>  
+                            <button type='button' class='btn btn-danger'>Apagar</button> </td>
+                        </tr>
+                        ");
+                       
+                        }
+
+                    }
+                    ?>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer -->
+            <footer class="text-center " style="background-color: #f39822">
+                <!-- Grid container -->
+                <div class="container p-4">
+                    <!-- Section: Text -->
+
+                    <!-- Section: Links -->
+
+                </div>
+                <!-- Grid container -->
+
+                <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: #f38022">
+                    © 2021 Redepharma -
+                    <a class="text-dark" href="https://github.com/eliabeguerreiro">Eliabe Paz</a> & <a class="text-dark"
+                        href="https://github.com/kcaiosouza">Caio Souza</a>
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- Footer -->
+        </div>
+
+    </div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous">
+    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#sidebarCollapse').on('click', function() {
+            $('#sidebar').toggleClass('active');
         });
-        </script>
+    });
+    </script>
 </body>
 
 </html>
