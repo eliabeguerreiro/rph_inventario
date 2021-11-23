@@ -147,7 +147,7 @@ ul ul a {
 */
 
 #content-container {
-    display: flex;
+    /* display: flex; */
     flex: 1;
     flex-direction: column;
     align-items: center;
@@ -156,11 +156,11 @@ ul ul a {
     margin: 0;
 }
 
-#content {
+/* #content {
     width: 100%;
     height: 100%;
     flex: auto;
-}
+} */
 
 #customers {
     border-collapse: collapse;
