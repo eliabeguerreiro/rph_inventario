@@ -147,18 +147,18 @@ ul ul a {
 */
 
 #content-container {
-    /* display: flex; */
-    flex: 1;
+    height: 100%;
+    display: flex;
+    align-content: stretch;
     flex-direction: column;
-    align-items: center;
-    margin: 0;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
 }
 
-/* #content {
-    width: 100%;
+#content {
     height: 100%;
-    flex: auto;
-} */
+} 
 
 #customers {
     border-collapse: collapse;
@@ -189,16 +189,42 @@ ul ul a {
 
   td {
     font-size: 0.875rem;
+  }
+
+  footer {
+    bottom: 0px;
+    flex: auto;
+    width: 100%;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  .footer {
+      display: flex;
+  }
+
+  .tabela-inventario {
+    height: 100%;
+    display: flex;
+    align-content: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
+  /* -=-=-=-=-=-=-=-=-=-=
+     Configuração Print
+   -=-=-=-=-=-=-=-=-=-=-=*/
+
+   @media print {
+    .noprint {
+        display: none;
     }
-
-footer {
-  bottom: 0px;
-  position: fixed;
-  flex: auto;
-  width: 100%;
-
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
+    .print{
+        display: flex;
+    }
 }

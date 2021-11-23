@@ -37,6 +37,7 @@ if($_POST){
         $_SESSION['msg'] = "Item ".$dados['tipo']." cadastrado com sucesso";
     }
 
+    //qr code
     $aux = 'qr_img0.50j/php/qr_img.php?';   
     $aux .= 'd='.$ctrl.'&';
     $aux .= 'e=H$';
@@ -251,3 +252,4 @@ if($_POST){
 </body>
 
 </html>
+<?php
