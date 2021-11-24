@@ -164,7 +164,7 @@ $aux = 'qr_img0.50j/php/qr_img.php?';
                     <div class="col-md-8">
                         <input class="form-control" type="number" name="loja" placeholder="Digite o codigo da loja">
                         <small id="emailHelp" class="form-text text-muted">Sempre insira 4 digitos. Exemplo:
-                            0015</small>
+                            15</small>
                     </div>
                     <br>
 

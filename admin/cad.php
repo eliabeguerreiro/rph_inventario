@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("../functions/connection.php");
 include_once("../functions/fun.php");
 
@@ -6,16 +7,13 @@ $btnCadUsuario = filter_input(INPUT_POST, 'btnCadUsuario', FILTER_SANITIZE_STRIN
 //coletando dados da pagina html
 if($btnCadUsuario){
     $dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-    $erro = false;
-
+    
 //limpeza da string
     $dados_st = array_map('strip_tags', $dados_rc);
     $dados = array_map('trim', $dados_st);
-
-    if(in_array('',$dados)){
-        $erro = true;
-            $_SESSION['msg'] = "Necessário preencher todos os campos";
-    }elseif((strlen($dados['senha'])) < 6){
+    
+    $erro = false;
+    if((strlen($dados['senha'])) < 6){
         $erro = true;
         $_SESSION['msg'] = "A senha deve ter no minímo 6 caracteres";
     }elseif(stristr($dados['senha'], "'")) {
@@ -23,23 +21,21 @@ if($btnCadUsuario){
         $_SESSION['msg'] = "Caracter ( ' ) utilizado na senha é inválido";
     }else{
 
-        $result_usuario = "SELECT idusuario FROM usuarios WHERE usuario='". $dados['usuario'] ."'";
+        $result_usuario = "SELECT id_user FROM usuarios WHERE usuario='". $dados['usuario'] ."'";
         $resultado_usuario = mysqli_query($conn, $result_usuario);
         if(($resultado_usuario) AND ($resultado_usuario->num_rows != 0)){
             $erro = true;
-            $_SESSION['msg'] = "Esse nome já consta no sistema!";
-        }
-
-    
+            $_SESSION['msg'] = "Esse login já consta no sistema!";
+        }    
     }
 
 //encriptação da senha
     if(!$erro){
-        $tipo = $dados['turma'];
+        $tipo = $dados['tipo'];
         $dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT);
         $result_usuario = "INSERT INTO usuarios (usuario, senha, tipo) VALUES ('" .$dados['usuario']. "','" .$dados['senha']. "','$tipo')";
-    var_dump($result_usuario);
-            $resultado_usario = mysqli_query($conn, $result_usuario);
+        $resultado_usario = mysqli_query($conn, $result_usuario);
+        
         if(mysqli_insert_id($conn)){
             $_SESSION['msg'] = "Usuário cadastrado com sucesso";
         }else{
@@ -62,6 +58,7 @@ if($btnCadUsuario){
         <body>
         
             <center>
+            <div class='jumbotron'>
                 <h2>Cadastro de Agentes</h2>
                 <?php
                 
@@ -80,7 +77,7 @@ if($btnCadUsuario){
                     <input type="usuario" name="usuario" placeholder="Digite o loguin">
                         
                     <label>Tipo</label>
-                    <select>
+                    <select name="tipo">
                         <option value="">--</option>
                         <option value="admin">Adminstrador</option>
                         <option value="agent">Agente</option>
@@ -92,6 +89,7 @@ if($btnCadUsuario){
                     <br>
                     <input type="submit" name="btnCadUsuario" value="Cadastrar"><br>
                 </form>
+            </div>
             </center>
             <script src="//cdnjs.cloudflare.com/ajax/libs/min.js/0.2.3/$.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
