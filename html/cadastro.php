@@ -210,7 +210,7 @@ $aux = 'qr_img0.50j/php/qr_img.php?';
             <div class="qr_code print">
                 <?php
                     echo("<img src='".$aux."' alt=''>");
-                    echo("<a>$ctrl</a>")
+                    echo("<a style='font-size: 30px;'>$ctrl</a>")
                 ?>
             </div>
             <!-- Footer -->
