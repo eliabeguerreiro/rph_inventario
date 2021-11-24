@@ -21,27 +21,27 @@
 
 <body>
     <nav class="navbar navbar-light bg-redeph">
-        <div class="container-fluid">
+        <div class="navbar-container">
           <button class="navbar-toggler bg-redeph-dark" id="sidebarCollapse" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="material-icons color-white">reorder</span>
           </button>
+          <form class="d-flex" id="searchbar">
+            <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
+            <button class="btn btn-redeph-search busca-btn" type="submit">
+                <!-- Icone do Google Icons -->
+                <span class="material-icons">search</span>
+            </button>
+          </form>
         </div>
       </nav>
     <div class="wrapper">
         <!-- Sidebar -->
-        <nav id="sidebar" class="noprint">
+        <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <img class="print" src="./images/logo.png" alt="Logo" width="200px" height="auto" />
+                <img class="" src="./images/logo.png" alt="Logo" width="200px" height="auto" />
             </div>
-    
             <ul class="list-unstyled components">
-                <form class="d-flex" id="searchbar">
-                    <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
-                    <button class="btn btn-redeph-search busca-btn" type="submit">
-                        <!-- Icone do Google Icons -->
-                        <span class="material-icons">search</span>
-                    </button>
-                  </form>
+                
             </ul>
                 
             <ul class="list-unstyled components" id="sidebar-links">
@@ -62,7 +62,7 @@
             <div id="content-container">
                     
         
-                    <div class="form-group noprint" style="padding: 20px 20px 11.2rem 20px;">
+                    <div class="form-group" style="padding: 20px 20px 11.2rem 20px;">
                         <form method="POST" action="" enctype="multipart/form-data">
         
                             <label>Identificador</label>
@@ -119,13 +119,10 @@
         
                         </form>
                     </div>
-                    <div class="qr_code print">
-                        <img src="./images/logo.png" alt="">
-                        <a style="font-size: 30px;">100003</a>
-                    </div>
-                <div class="footer noprint">
+
+                <div class="footer">
                         <!-- Footer -->
-                  <footer class="text-center " style="background-color: #f39822">
+                  <footer class="text-center" style="background-color: #f39822">
                     <!-- Grid container -->
                     <div class="container p-4">   
                       <!-- Section: Text -->

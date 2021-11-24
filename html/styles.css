@@ -48,6 +48,13 @@ a[data-toggle="collapse"] {
     transform: translateY(-50%);
 }
 
+.navbar-container {
+    flex: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;
@@ -216,12 +223,6 @@ ul ul a {
     align-items: stretch;
   }
 
-  .qr_code {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  }
   /* -=-=-=-=-=-=-=-=-=-=
      Configuração Print
    -=-=-=-=-=-=-=-=-=-=-=*/
