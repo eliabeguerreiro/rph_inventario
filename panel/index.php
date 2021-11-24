@@ -159,7 +159,7 @@ if(!$_SESSION['usuario']['nome']){
                             <td></td>
 
                             <td> <a href='edit.php?del=n&id=".$row_usuario['id_item']."' type='button' class='btn btn-primary'>Editar</a>  
-                            <a href='edit.php?del=y&id=".$row_usuario['modelo']."type='button' class='btn btn-danger'>Apagar</a> </td>
+                            <a href='edit.php?del=y&id=".$row_usuario['id_item']."' type='button' class='btn btn-danger'>Apagar</a> </td>
                         </tr>
                         ");
                        
