@@ -1,9 +1,9 @@
 <?php
 
 function msg_sistem ($msg){    
-    echo "<div class='alert alert-warning' role='alert'>";
+    echo "<center><div class='alert alert-warning' role='alert'>";
     echo $_SESSION['msg'];
-    echo"</div>";
+    echo"</center></div>";
         }
 
 function sair(){
