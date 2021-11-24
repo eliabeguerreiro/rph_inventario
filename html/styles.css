@@ -216,12 +216,6 @@ ul ul a {
     align-items: stretch;
   }
 
-  .qr_code {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  }
   /* -=-=-=-=-=-=-=-=-=-=
      Configuração Print
    -=-=-=-=-=-=-=-=-=-=-=*/
