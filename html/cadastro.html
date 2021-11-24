@@ -29,7 +29,7 @@
       </nav>
     <div class="wrapper">
         <!-- Sidebar -->
-        <nav id="sidebar" class="">
+        <nav id="sidebar" class="noprint">
             <div class="sidebar-header">
                 <img class="print" src="./images/logo.png" alt="Logo" width="200px" height="auto" />
             </div>
@@ -59,10 +59,10 @@
         </nav>
 
         <div id="content" style="flex: auto;">
-        <div id="content-container">
+            <div id="content-container">
                     
         
-                    <div class="form-group" style="padding: 20px 20px 11.2rem 20px;">
+                    <div class="form-group noprint" style="padding: 20px 20px 11.2rem 20px;">
                         <form method="POST" action="" enctype="multipart/form-data">
         
                             <label>Identificador</label>
@@ -119,7 +119,11 @@
         
                         </form>
                     </div>
-                    <div class="footer">
+                    <div class="qr_code print">
+                        <img src="./images/logo.png" alt="">
+                        <a style="font-size: 30px;">100003</a>
+                    </div>
+                <div class="footer noprint">
                         <!-- Footer -->
                   <footer class="text-center " style="background-color: #f39822">
                     <!-- Grid container -->
@@ -140,11 +144,9 @@
                   
                   </footer>
                   <!-- Footer -->
-                    </div>
                 </div>
-                
-    
-    </div>  
+            </div>
+        </div>  
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
