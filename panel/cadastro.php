@@ -92,6 +92,9 @@ if($_POST){
                     <a href="cadastro.php">Cadastro</a>
                 </li>
                 <li>
+                    <a href="print.php">Imprimir</a>
+                </li>
+                <li>
                     <a href="#">Leitor</a>
                 </li>
                 <br>
