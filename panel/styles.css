@@ -148,6 +148,7 @@ ul ul a {
 
 #content-container {
     height: 100%;
+    width: 100%;
     display: flex;
     align-content: stretch;
     flex-direction: column;
@@ -216,13 +217,6 @@ ul ul a {
     align-items: stretch;
   }
 
-  .qr_code {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  }
-  
   /* -=-=-=-=-=-=-=-=-=-=
      Configuração Print
    -=-=-=-=-=-=-=-=-=-=-=*/

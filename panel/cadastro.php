@@ -26,7 +26,6 @@ if($_POST){
         $ctrl = $_SESSION['usuario']['id_usuario']."0".$controle; 
     }
 
-
     //Fazendo upload dos dados pro BD
     $upload_item = "INSERT INTO itens (id_item, identificador, tipo, data_compra, loja, modelo) 
     VALUES('" .$ctrl. "','" .$dados['identificador']. "','" .$dados['tipo']. "',
@@ -36,18 +35,7 @@ if($_POST){
      if(mysqli_insert_id($conn)){
         $_SESSION['msg'] = "Item ".$dados['tipo']." cadastrado com sucesso";
     }
-
-    
-    
 }
-
-//qr code
-$aux = 'qr_img0.50j/php/qr_img.php?';   
-    $aux .= 'd=QUALQUER COISA&';
-    $aux .= 'e=H$';
-    $aux .= 's=10$';
-    $aux .= 't=P';
-
 
 ?>
 
@@ -76,7 +64,7 @@ $aux = 'qr_img0.50j/php/qr_img.php?';
 
 <body>
 
-    <nav class="navbar navbar-light bg-redeph">
+    <nav class="navbar navbar-light bg-redeph ">
         <div class="container-fluid">
             <button class="navbar-toggler bg-redeph-dark" id="sidebarCollapse" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
@@ -88,12 +76,10 @@ $aux = 'qr_img0.50j/php/qr_img.php?';
     </nav>
     <div class="wrapper">
         <!-- Sidebar -->
-        <nav id="sidebar" class="">
+        <nav id="sidebar">
             <div class="sidebar-header">
                 <img src="../images/logo.png" alt="Logo" width="200px" height="auto" />
             </div>
-
-
 
             <ul class="list-unstyled components" id="sidebar-links">
                 <li>
@@ -116,7 +102,7 @@ $aux = 'qr_img0.50j/php/qr_img.php?';
             <div id="content" style="flex: auto;">
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal fade " id="myModal" role="dialog">
                     <div class="modal-dialog">
 
                         <!-- Conteudo -->
@@ -138,101 +124,95 @@ $aux = 'qr_img0.50j/php/qr_img.php?';
 
             </div>
 
+            <div class="form-group " style="padding: 20px 20px 170px 20px;">
 
-            <div class="form-group" style="padding: 20px 20px 170px 20px;">
-                <center>
-                    <?php    
+                <?php    
                     if(isset($_SESSION['msg'])){
                 msg_sistem($_SESSION['msg']);
                 unset($_SESSION['msg']);
                 }
                 ?>
-                
-                <form method="POST" action="" enctype="multipart/form-data">
+                <center>
+                    <form method="POST" action="" enctype="multipart/form-data">
 
-                    <label>Identificador</label>
-                    <div class="col-md-8">
-                        <input class="form-control" type="text" name="identificador"
-                            placeholder="Digite um codigo identificador">
-                        <small id="emailHelp" class="form-text text-muted">Siga nessa ordem de preferencia:
-                            Numero MAC, Serial ou codigo exclusivo do item que esteja fisicamente visível.</small>
-                    </div>
-                    <br>
-                    <br>
+                        <label>Identificador</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="identificador"
+                                placeholder="Digite um codigo identificador">
+                            <small id="emailHelp" class="form-text text-muted">Siga nessa ordem de preferencia:
+                                Numero MAC, Serial ou codigo exclusivo do item que esteja fisicamente visível.</small>
+                        </div>
+                        <br>
+                        <br>
 
-                    <label>Número da loja</label>
-                    <div class="col-md-8">
-                        <input class="form-control" type="number" name="loja" placeholder="Digite o codigo da loja">
-                        <small id="emailHelp" class="form-text text-muted">Sempre insira 4 digitos. Exemplo:
-                            15</small>
-                    </div>
-                    <br>
+                        <label>Número da loja</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="number" name="loja" placeholder="Digite o codigo da loja">
+                            <small id="emailHelp" class="form-text text-muted">Sempre insira 2 digitos. Exemplo:
+                                01, 05, 15 </small>
+                        </div>
+                        <br>
 
-                    <label>Modelo</label>
-                    <div class="col-md-8">
-                        <input class="form-control" type="text" name="tipo" placeholder="Digite o modelo do item">
-                        <small id="emailHelp" class="form-text text-muted">O modelo será padronizado em marca + modelo.
-                            Ex: hp officejet pro 6970 | lg flatron 24bl550j-b</small>
-                    </div>
-                    <br>
+                        <label>Modelo</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="tipo" placeholder="Digite o modelo do item">
+                            <small id="emailHelp" class="form-text text-muted">O modelo será padronizado em marca +
+                                modelo.
+                                Ex: hp officejet pro 6970 | lg flatron 24bl550j-b</small>
+                        </div>
+                        <br>
 
-                    <label>Tipo</label>
-                    <div class="col-md-8" style="padding-left: 15px;">
-                        <select class="form-control" name="modelo">
-                            <option value="">Selecione o modelo</option>
-                            <option value="desktop">Desktop</option>
-                            <option value="monitpr">Monitor</option>
-                            <option value="equipamento_rede">Equipamento de Rede</option>
-                            <option value="nobrake">Nobrake</option>
-                            <option value="leitor">Leitor</option>
-                            <option value="impressora">Impressora</option>
-                            <option value="equipamento_audiovisual">Equipamento Audiovisual</option>
-                        </select>
-                    </div>
+                        <label>Tipo</label>
+                        <div class="col-md-8" style="padding-left: 15px;">
+                            <select class="form-control" name="modelo">
+                                <option value="">Selecione o modelo</option>
+                                <option value="desktop">Desktop</option>
+                                <option value="monitor">Monitor</option>
+                                <option value="equipamento_rede">Equipamento de Rede</option>
+                                <option value="nobrake">Nobrake</option>
+                                <option value="leitor">Leitor</option>
+                                <option value="impressora">Impressora</option>
+                                <option value="equipamento_audiovisual">Equipamento Audiovisual</option>
+                            </select>
+                        </div>
 
-                    <br>
+                        <br>
 
+                        <label>Data Aquisição/Registro</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="date" name="data_c"
+                                placeholder="Digite a data de nascimento">
+                            <small id="emailHelp" class="form-text text-muted">Opcional</small>
+                        </div>
 
-                    <label>Data Aquisição/Registro</label>
-                    <div class="col-md-8">
-                        <input class="form-control" type="date" name="data_c" placeholder="Digite a data de nascimento">
-                        <small id="emailHelp" class="form-text text-muted">Opcional</small>
-                    </div>
+                        <br><br>
+                        <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
 
-                    <br><br>
-                    <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
-
-                </form>
+                    </form>
                 </center>
             </div>
-            <!-- Footer -->
-            <footer class="text-center " style="background-color: #f39822">
-                <!-- Grid container -->
-                <div class="container p-4">
-                    <!-- Section: Text -->
+            <div class="footer ">
+                <!-- Footer -->
+                <footer class="text-center" style="background-color: #f39822">
 
-                    <!-- Section: Links -->
+                    <div class="container p-4">                         
+                    </div>
+               
+                    <div class="text-center p-3" style="background-color: #f38022">
+                        © 2021 Redepharma -
+                        <a class="text-dark" href="https://github.com/eliabeguerreiro">Eliabe Paz</a> & <a
+                            class="text-dark" href="https://github.com/kcaiosouza">Caio Souza</a>
+                    </div>
+                    <!-- Copyright -->
 
-                </div>
-                <!-- Grid container -->
-
-                <!-- Copyright -->
-                <div class="text-center p-3" style="background-color: #f38022">
-                    © 2021 Redepharma -
-                    <a class="text-dark" href="https://github.com/eliabeguerreiro">Eliabe Paz</a> & <a class="text-dark"
-                        href="https://github.com/kcaiosouza">Caio Souza</a>
-                </div>
-                <!-- Copyright -->
-
-            </footer>
-            <!-- Footer -->
+                </footer>
+                <!-- Footer -->
+            </div>
         </div>
 
 
     </div>
-<?php
-    echo("<img src='$aux' alt=''>");
-?>
+
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
