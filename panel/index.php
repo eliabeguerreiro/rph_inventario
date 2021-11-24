@@ -23,7 +23,7 @@ echo("</div><br>");
 
 
 if(!$_SESSION['usuario']['nome']){
-  $_SESSION['msg'] = "Usuario sem cadastro necessário atualizar o perfil!";
+  $_SESSION['msg'] = "Usuario sem nome cadastrado, necessário atualizar o perfil!";
   header("Location: caract.php");
  
 }
@@ -62,6 +62,12 @@ if(!$_SESSION['usuario']['nome']){
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="material-icons color-white">reorder</span>
             </button>
+            <form method="POST" action="" class="d-flex" id="searchbar">
+                    <input class="form-control me-2" name='id_pesquisa' type="search" placeholder="Procurar">
+                    <input class="btn btn-redeph-search busca-btn" name='SendPesqItem' type="submit" value="Pesquisar">
+
+                    </button>
+                </form>
         </div>
 
     </nav>
@@ -73,12 +79,7 @@ if(!$_SESSION['usuario']['nome']){
             </div>
 
             <ul class="list-unstyled components">
-                <form method="POST" action="" class="d-flex" id="searchbar">
-                    <input class="form-control me-2" name='id_pesquisa' type="search" placeholder="Procurar">
-                    <input class="btn btn-redeph-search busca-btn" name='SendPesqItem' type="submit" value="Pesquisar">
-
-                    </button>
-                </form>
+                
             </ul>
 
             <ul class="list-unstyled components" id="sidebar-links">
@@ -157,8 +158,8 @@ if(!$_SESSION['usuario']['nome']){
                             <td>Modelo: ".$row_usuario['modelo']."</td>
                             <td></td>
 
-                            <td> <button type='button' class='btn btn-primary'>Editar</button>  
-                            <button type='button' class='btn btn-danger'>Apagar</button> </td>
+                            <td> <a href='edit.php?del=n&id=".$row_usuario['id_item']."' type='button' class='btn btn-primary'>Editar</a>  
+                            <a href='edit.php?del=y&id=".$row_usuario['modelo']."type='button' class='btn btn-danger'>Apagar</a> </td>
                         </tr>
                         ");
                        
@@ -171,25 +172,19 @@ if(!$_SESSION['usuario']['nome']){
                 </table>
                 <!-- Footer -->
                 <footer class="text-center " style="background-color: #f39822">
-                    <!-- Grid container -->
+                    
                     <div class="container p-4">
-                        <!-- Section: Text -->
-
-                        <!-- Section: Links -->
 
                     </div>
-                    <!-- Grid container -->
-
-                    <!-- Copyright -->
+                    
                     <div class="text-center p-3" style="background-color: #f38022">
                         © 2021 Redepharma -
                         <a class="text-dark" href="https://github.com/eliabeguerreiro">Eliabe Paz</a> & <a
                             class="text-dark" href="https://github.com/kcaiosouza">Caio Souza</a>
                     </div>
-                    <!-- Copyright -->
 
                 </footer>
-                <!-- Footer -->
+                
             </div>
         </div>
 
