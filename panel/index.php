@@ -65,11 +65,11 @@ if(!$_SESSION['usuario']['nome']){
                 <span class="material-icons color-white">reorder</span>
             </button>
             <form method="GET" action="" class="d-flex" id="searchbar">
-                    <input class="form-control me-2" name='id_pesquisa' type="search" placeholder="Procurar">
-                    <input class="btn btn-redeph-search busca-btn" name='SendPesqItem' type="submit" value="Pesquisar">
+                <input class="form-control me-2" name='id_pesquisa' type="search" placeholder="Procurar">
+                <input class="btn btn-redeph-search busca-btn" name='SendPesqItem' type="submit" value="Pesquisar">
 
-                    </button>
-                </form>
+                </button>
+            </form>
         </div>
 
     </nav>
@@ -81,7 +81,7 @@ if(!$_SESSION['usuario']['nome']){
             </div>
 
             <ul class="list-unstyled components">
-                
+
             </ul>
 
             <ul class="list-unstyled components" id="sidebar-links">
@@ -99,6 +99,9 @@ if(!$_SESSION['usuario']['nome']){
                 </li>
                 <li>
                     <a href="#">Leitor</a>
+                </li>
+                <li>
+                    <a href="log.php">Log de alterações</a>
                 </li>
                 <br>
             </ul>
@@ -178,8 +181,8 @@ if(!$_SESSION['usuario']['nome']){
                         
                         ");
                         ?>
-                        </tbody>
-                        <?php
+                    </tbody>
+                    <?php
                         }
 
                         $result_pg = "SELECT COUNT(id) AS num_result FROM itens";
@@ -190,6 +193,9 @@ if(!$_SESSION['usuario']['nome']){
                         
                         //Limitar os link antes depois
                         $max_links = 2;
+                        ?>
+                </table>
+                <?php
                         echo "<a href='".$_SESSION['URL']."&pagina=1'>Primeira</a> ";
                         
                         for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
@@ -209,16 +215,16 @@ if(!$_SESSION['usuario']['nome']){
                         echo "<a href='".$_SESSION['URL']."&pagina=$quantidade_pg'>Ultima</a>";    
 
                     }
-                     ?>    
-                
+                     ?>
+
                 </table>
                 <!-- Footer -->
                 <footer class="text-center " style="background-color: #f39822">
-                    
+
                     <div class="container p-4">
 
                     </div>
-                    
+
                     <div class="text-center p-3" style="background-color: #f38022">
                         © 2021 Redepharma -
                         <a class="text-dark" href="https://github.com/eliabeguerreiro">Eliabe Paz</a> & <a
@@ -226,7 +232,7 @@ if(!$_SESSION['usuario']['nome']){
                     </div>
 
                 </footer>
-                
+
             </div>
         </div>
 

@@ -97,6 +97,9 @@ if($_POST){
                 <li>
                     <a href="#">Leitor</a>
                 </li>
+                <li>
+                    <a href="log.php">Log de alterações</a>
+                </li>
                 <br>
             </ul>
         </nav>
