@@ -157,10 +157,6 @@ if(!$_SESSION['usuario']['nome']){
 
                     if($SendPesqItem){
 
-
-                        
-
-                    
                         $pesquisa = filter_input(INPUT_GET, 'id_pesquisa', FILTER_SANITIZE_STRING);
                         $result_pesquisa = "SELECT * FROM itens WHERE id_item LIKE '%$pesquisa%' LIMIT $inicio, $qnt_result_pg";
                         $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);

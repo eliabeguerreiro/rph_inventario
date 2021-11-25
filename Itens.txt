@@ -1,22 +1,39 @@
-Os Itens terão os seguintes metadados:
+Os Itens terï¿½o os seguintes metadados:
 	ID, identificador, local, tipo, modelo e data de compra.
 
 
 Tipos: Desktop, monitor, equipamento_rede, nobrake, leitor, impressora, equipamento_audiovisual.
 
 
-Observações: 
+Observaï¿½ï¿½es: 
 
-O Id é gerado automáticamente;
+O Id ï¿½ gerado automï¿½ticamente;
 
-O indentificador é definido por uma letra e um numero(mais de um digito), que pode ser o numero mac, serial ou um numero aleatorio(que seja unico e que esteja impresso no equipamento).
+O indentificador ï¿½ definido por uma letra e um numero(mais de um digito), que pode ser o numero mac, serial ou um numero aleatorio(que seja unico e que esteja impresso no equipamento).
 
-O local será constituido por uma letra e dois digitos e será um dado que pode ser alterado ex:R10;
+O local serï¿½ constituido por uma letra e dois digitos e serï¿½ um dado que pode ser alterado ex:R10;
 
-O modelo será padronizado em marca + modelo. Ex: (hp officejet pro 6970/ lg flatron 24bl550j-b)
+O modelo serï¿½ padronizado em marca + modelo. Ex: (hp officejet pro 6970/ lg flatron 24bl550j-b)
 
 
 
 
 
 QR_CODE: 11x9   90 por 115 mm
+
+
+<form method="POST" action="">
+
+        <label>Apagar o item ID: <?php echo($_GET['id']);?></label>
+       
+        <div class="d-flex align-items-center justify-content-around">
+
+            <div class="btn-group">
+                <div class="icon-buttom-danger d-flex justify-content-center align-items-center" id="btnGroupAddon">
+                </div>
+                <input class="btn btn-danger" type="submit" name="btnAltData" value="Apagar"><br>
+            </div>
+
+        </div>
+
+    </form>
