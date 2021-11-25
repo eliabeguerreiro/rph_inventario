@@ -223,6 +223,41 @@ ul ul a {
     align-items: stretch;
   }
 
+  .icon-buttom-warning {
+      border-radius: 5px 0 0 5px;
+      border-style: solid;
+      border-color: #ffc107;
+      border-width: 2px;
+      padding: 0 10px;
+      color: #ffc107;
+  }
+
+  .icon-buttom-primary {
+      border-radius: 5px 0 0 5px;
+      border-style: solid;
+      border-color: #0d6efd;
+      border-width: 2px;
+      padding: 0 10px;
+      color: #0d6efd;
+  }
+
+  .icon-buttom-danger {
+      border-radius: 5px 0 0 5px;
+      border-style: solid;
+      border-color: #dc3545;
+      border-width: 2px;
+      padding: 0 10px;
+      color: #dc3545;
+  }
+
+  h4 {
+      color: #000;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+  }
+
+
   /* -=-=-=-=-=-=-=-=-=-=
      Configuração Print
    -=-=-=-=-=-=-=-=-=-=-=*/
