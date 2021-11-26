@@ -195,11 +195,13 @@ if(!$_SESSION['usuario']['nome']){
                         $max_links = 2;
                         ?>
                 </table>
-                <?php
+                <?php   
+
                         echo "<a href='".$_SESSION['URL']."&pagina=1'>Primeira</a> ";
                         
                         for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
                             if($pag_ant >= 1){
+                                echo$_SESSION['URL'];
                                 echo "<a href='".$_SESSION['URL']."&pagina=$pag_ant'>$pag_ant</a> ";
                             }
                         }
