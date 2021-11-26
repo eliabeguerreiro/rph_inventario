@@ -2,7 +2,7 @@
 session_start();
 include("../functions/connection.php");
 include("../functions/fun.php");
-var_dump($_SESSION['usuario']);
+//var_dump($_SESSION['usuario']);
 
 $dados = $_GET;
 $sqlBus = "SELECT * FROM itens WHERE id_item='". $dados['id'] ."'";
@@ -10,6 +10,7 @@ $sqlBuscar = mysqli_query($conn, $sqlBus);
 $dados = mysqli_fetch_assoc($sqlBuscar);
 
 if($dados){
+    $id=$_GET['id'];
     if($_GET['del']=='n'){
         if($_POST){  
             
@@ -18,13 +19,23 @@ if($dados){
             //echo($sql_alt);
             
             if($sql_alterar){
-                $_SESSION['msg'] = 'Localização do item Alterado com Sucesso!';
-                header("Location:".$_SESSION['URL']);
-                
+                $_SESSION['msg'] = 'Localização do item alterada com Sucesso!';
+                $data = date('Y/m/d');
+                $tipo = 'alter';
+                $detalhes = $_POST['motivo'];
+                $sql_l = "INSERT INTO log_alteracao (id_item, id_user, detalhe, data_altera, tipo) VALUES 
+                ('" .$id. "','" .$_SESSION['usuario']['id_usuario']. "','" .$detalhes. "','" .$data. "','" .$tipo. "')";
+                $sql_log = mysqli_query($conn, $sql_l);  
 
-                /*$sql_log = "INSERT INTO itens (id_item, id_user, detalhe, data_altera, tipo) VALUES 
-                ('" .$GET['id']. "','" .$_SESSION['usuario']['id_usuario']. "','" .$detalhes. "','" .$data. "','" .$tipo. "')";
-                */
+                echo$sql_l;
+                if($sql_log){
+                    header("Location:".$_SESSION['URL']);
+                }else{
+                    $_SESSION['msg'] = 'Ação não registrada!';
+                    header("Location:".$_SESSION['URL']);
+                }
+
+
             } 
 
         }
@@ -63,10 +74,13 @@ if($dados){
 
                 <input class="form-control" type="number" name="local" placeholder="Digite o novo local do item ">
                 <br>
+                <input class="form-control" type="text" name="motivo" placeholder="Digite o motivo da alteração:">
+                <small>Limite de 300 caracteres</small>
+                <br>
                 <div class="d-flex align-items-center justify-content-around">
 
                     <div class="btn-group">
-                        <input class="btn btn-danger" type="submit" name="btnAltData" value="Alterar"><br>
+                        <input class="btn btn-danger" type="submit" name="btnAltData" ><br>
                     </div>
 
                 </div>
@@ -89,8 +103,21 @@ if($dados){
             
             if($sql_alterar){
                 $_SESSION['msg'] = 'O item foi removido com Sucesso!';
-                header("Location:".$_SESSION['URL']);
-                //e insert na tabela de log        
+                $data = date('Y/m/d');
+                $tipo = 'remov';
+                $detalhes = $_POST['motivo'];
+                $sql_l = "INSERT INTO log_alteracao (id_item, id_user, detalhe, data_altera, tipo) VALUES 
+                ('" .$id. "','" .$_SESSION['usuario']['id_usuario']. "','" .$detalhes. "','" .$data. "','" .$tipo. "')";
+                $sql_log = mysqli_query($conn, $sql_l);  
+
+                //echo$sql_l;
+                if($sql_log){
+                    header("Location:".$_SESSION['URL']);
+                }else{
+                    $_SESSION['msg'] = 'Ação não registrada!';
+                    header("Location:".$_SESSION['URL']);
+                }
+      
             }
            
         }
@@ -132,6 +159,8 @@ if($dados){
                     <h4><label>Você tem certeza que quer apagar DEFINITIVAMENTE o item ID:
                             <?php echo($_GET['id']);?></label></h4>
                     <br>
+                    <input class="form-control" type="text" name="motivo" placeholder="Digite o motivo da alteração:">
+                    <small>Insira o motivo antes de confirmar! Limite de 300 caracteres</small>
                     <div class="d-flex align-items-center justify-content-around">
 
                         <div class="btn-group">
