@@ -8,7 +8,7 @@ $_SESSION['URL']= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 if(!empty($_SESSION['usuario']['id_usuario']))
 {}
 else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
-    header("Location: index.php");
+    header("Location: ../index.php");
 } 
    
 if(isset($_SESSION['msg'])){
