@@ -3,6 +3,13 @@ session_start();
 include("../functions/connection.php");
 include("../functions/fun.php");
 
+if(!empty($_SESSION['usuario']['id_usuario']))
+{}
+else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
+    header("Location: index.php");
+} 
+
+
 //qr code
 
 ?>

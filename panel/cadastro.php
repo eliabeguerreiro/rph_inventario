@@ -3,6 +3,12 @@ session_start();
 include("../functions/connection.php");
 include("../functions/fun.php");
 
+if(!empty($_SESSION['usuario']['id_usuario']))
+{}
+else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
+    header("Location: index.php");
+} 
+
 //coletando dados do formulario
 if($_POST){
     
@@ -120,7 +126,7 @@ if($_POST){
                             <div class="modal-body">
                                 <center>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Voltar</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" href='../functions/logout.php?sair=sim'>Sair</button>
                                 </center>
                             </div>
                         </div>

@@ -5,8 +5,3 @@ function msg_sistem ($msg){
     echo $_SESSION['msg'];
     echo"</div></center>";
         }
-
-function sair(){
-    session_unset();
-    header("Location:../index.php");
-}

@@ -122,7 +122,7 @@ if(!$_SESSION['usuario']['nome']){
                         <div class="modal-body">
                             <center>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Voltar</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
+                                <a type="button" class="btn btn-danger" href='../functions/logout.php?sair=sim'>Sair</a>
                             </center>
                         </div>
                     </div>
@@ -266,10 +266,3 @@ if(!$_SESSION['usuario']['nome']){
   
 
 
-/*logoff da sistema
-if($_GET['sair']){
-  if($_GET['sair'] == 'sim'){
-    sair();
-  }
-}
-*/

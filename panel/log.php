@@ -2,11 +2,20 @@
 session_start();
 include("../functions/connection.php");
 include("../functions/fun.php");
-$sqlL = "SELECT * FROM log_alteracao ";
-$sqlLog = mysqli_query($conn, $sqlL);
+
+if(!empty($_SESSION['usuario']['id_usuario']))
+{}
+else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
+    header("Location: index.php");
+} 
 
 
-
+$pagina_atual = filter_input(INPUT_GET,'pagina', FILTER_SANITIZE_NUMBER_INT);		
+$pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;                    
+//Setar a quantidade de itens por pagina
+$qnt_result_pg = 5;                  
+//calcular o inicio visualização
+$inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
 
 ?>
@@ -86,6 +95,31 @@ $sqlLog = mysqli_query($conn, $sqlL);
             </ul>
         </nav>
 
+        <div class="content">
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Conteudo -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Deseja sair do inventario</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <center>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Voltar</button>
+                                <a type="button" class="btn btn-danger"  href='../functions/logout.php?sair=sim'>Sair</a>
+                            </center>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
         <div class='content' style='flex: auto;'>
             <div class='tabela-inventario'>
                 <table id='customers'>
@@ -100,8 +134,10 @@ $sqlLog = mysqli_query($conn, $sqlL);
                         <tr>
 
                             <?php
-                                
-          while ($log = mysqli_fetch_assoc($sqlLog)){
+        
+        $sqlL = "SELECT * FROM log_alteracao LIMIT $inicio, $qnt_result_pg";
+        $sqlLog = mysqli_query($conn, $sqlL);                                      
+        while ($log = mysqli_fetch_assoc($sqlLog)){
             
             echo("<tr>");
             echo("<td>ID do item: ".$log['id_item']."</td>");
@@ -111,10 +147,42 @@ $sqlLog = mysqli_query($conn, $sqlL);
             echo("<td>Tipo de alteração: ".$log['tipo']."</td>");
             echo("</tr>");
           }
+        //Paginção - Somar a quantidade de usuários
+		$result_pg = "SELECT COUNT(id) AS num_result FROM log_alteracao";
+		$resultado_pg = mysqli_query($conn, $result_pg);
+		$row_pg = mysqli_fetch_assoc($resultado_pg);
+		//echo $row_pg['num_result'];
+		//Quantidade de pagina 
+		$quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
+		
+		//Limitar os link antes depois
+		$max_links = 2;
+
+    
+		echo "</tbody>
+        </table>
+        <a href='log.php?pagina=1'>Primeira</a> ";
+		
+		for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
+			if($pag_ant >= 1){
+				echo "<a href='log.php?pagina=$pag_ant'>$pag_ant</a> ";
+			}
+		}
+			
+		echo "$pagina ";
+		
+		for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
+			if($pag_dep <= $quantidade_pg){
+				echo "<a href='log.php?pagina=$pag_dep'>$pag_dep</a> ";
+			}
+		}
+		
+		echo "<a href='log.php?pagina=$quantidade_pg'>Ultima</a>";
+
+
         ?>
 
-                    </tbody>
-                </table>
+                    
                 <div class='footer'>
                     <!-- Footer -->
                     <footer class='text-center ' style='background-color: #f39822'>

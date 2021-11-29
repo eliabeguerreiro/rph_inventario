@@ -5,6 +5,14 @@ include("../functions/fun.php");
 
 //var_dump($_SESSION['usuario']);
 
+
+if(!empty($_SESSION['usuario']['id_usuario']))
+{}
+else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
+    header("Location: index.php");
+} 
+
+
 if($_POST){
     
     $dados = $_POST;

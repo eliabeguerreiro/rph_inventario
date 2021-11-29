@@ -4,6 +4,14 @@ include("../functions/connection.php");
 include("../functions/fun.php");
 //var_dump($_SESSION['usuario']);
 
+
+if(!empty($_SESSION['usuario']['id_usuario']))
+{}
+else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
+    header("Location: index.php");
+} 
+
+
 $dados = $_GET;
 $sqlBus = "SELECT * FROM itens WHERE id_item='". $dados['id'] ."'";
 $sqlBuscar = mysqli_query($conn, $sqlBus);
