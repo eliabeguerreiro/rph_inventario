@@ -2,7 +2,7 @@
 session_start();
 include("../functions/connection.php");
 include("../functions/fun.php");
-$_SESSION['URL']= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+
 
 
 if(!empty($_SESSION['usuario']['id_usuario']))
@@ -146,7 +146,7 @@ if(!$_SESSION['usuario']['nome']){
                             <th></th>
                         </tr>
                         <?php
-                    $SendPesqItem = filter_input(INPUT_GET, 'SendPesqItem', FILTER_SANITIZE_STRING);
+                    $SendPesqItem = filter_input(INPUT_GET, 'id_pesquisa', FILTER_SANITIZE_STRING);
 
                     $pagina_atual = filter_input(INPUT_GET,'pagina', FILTER_SANITIZE_NUMBER_INT);	
                         $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
@@ -196,25 +196,27 @@ if(!$_SESSION['usuario']['nome']){
                         ?>
                 </table>
                 <?php   
-
-                        echo "<a href='".$_SESSION['URL']."&pagina=1'>Primeira</a> ";
+                        $_SESSION['URL']= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+                        $url = explode('&', $_SESSION['URL']);
+                        
+                        echo "<nav aria-label='Navegação de página'> <ul class='pagination justify-content-end'> <li class='page-item'> <a class='page-link' href='".$url['0']."&pagina=1' tabindex='-1'>Primeira</a> </li>";
                         
                         for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
                             if($pag_ant >= 1){
-                                echo$_SESSION['URL'];
-                                echo "<a href='".$_SESSION['URL']."&pagina=$pag_ant'>$pag_ant</a> ";
+                                
+                                echo "<li class='page-item'><a class='page-link' href='".$url['0']."&pagina=$pag_ant'>$pag_ant</a> </li>";
                             }
                         }
                             
-                        echo "$pagina ";
+                        echo "<li class='page-item disabled'><span class='page-link'>$pagina</span> </li>";
                         
                         for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
                             if($pag_dep <= $quantidade_pg){
-                                echo "<a href='".$_SESSION['URL']."&pagina=$pag_dep'>$pag_dep</a> ";
+                                echo "<li class='page-item'><a class='page-link' href='".$url['0']."&pagina=$pag_dep'>$pag_dep</a> </li>";
                             }
                         }
                         
-                        echo "<a href='".$_SESSION['URL']."&pagina=$quantidade_pg'>Ultima</a>";    
+                        echo "<li class='page-item'><a class='page-link' href='".$url['0']."&pagina=$quantidade_pg'>Ultima</a> </li> </ul> </nav>";    
 
                     }
                      ?>

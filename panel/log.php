@@ -2,6 +2,7 @@
 session_start();
 include("../functions/connection.php");
 include("../functions/fun.php");
+$_SESSION['URL']= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
 
 if(!empty($_SESSION['usuario']['id_usuario']))
 {}
@@ -53,26 +54,72 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                 <span class='material-icons color-white'>reorder</span>
             </button>
             <div class="left-side">
-            <div class="dropdown">
-              <button class="btn btn-redeph-search dropdown-toggle justify-content-center align-items-center d-flex" type="button" data-toggle="dropdown"><span class="material-icons">
-                filter_alt
-                </span>
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu" style="padding-left: 7px;">
-                <li><a href="#">Data</a></li>
-                <li><a href="#">Usuário</a></li>
-                <li><a href="#">Alteração</a></li>
-                <li><a href="#">Remoção</a></li>
-              </ul>
+                <div class="dropdown">
+                    <button
+                        class="btn btn-redeph-search dropdown-toggle justify-content-center align-items-center d-flex"
+                        type="button" data-toggle="dropdown"><span class="material-icons">
+                            filter_alt
+                        </span>
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu" style="padding-left: 7px;">
+
+                        <?php
+                        $url = explode('&', $_SESSION['URL']);
+                        
+                echo("
+                <li><a href='".$url['0']."&filtro=data'>Data</a></li>
+                <li><a href='".$url['0']."&filtro=user'>Usuário</a></li>
+                <li><a href='".$url['0']."&filtro=alter'>Alteração</a></li>
+                <li><a href='".$url['0']."&filtro=remov'>Remoção</a></li>
+              ");
+              ?>
+                    </ul>
+                </div>
+
+
+                <form class="d-flex" id="searchbar">
+
+                    <?php
+                    if($_GET){
+                        $filtro_atual = filter_input(INPUT_GET,'filtro', FILTER_SANITIZE_NUMBER_INT);		
+                        $filtro = (!empty($filtro_atual)) ? $filtro_atual : 'nenhum';   
+
+                        if($filtro){
+
+
+
+
+
+
+
+
+
+
+
+
+                        }elseif($filtro == 'nenhum'){
+                            //pesquisa sem filtro
+                            ?>
+    
+    
+                        <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
+                        <button class="btn btn-redeph-search busca-btn" type="submit">
+                            <span class="material-icons">search</span>
+                            <?php
+                        }
+
+                    }
+
+                ?>
+                        <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
+                        <button class="btn btn-redeph-search busca-btn" type="submit">
+                            <span class="material-icons">search</span>
+                </form>
+
+
+
+                </button>
             </div>
-            <form class="d-flex" id="searchbar">
-              <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
-              <button class="btn btn-redeph-search busca-btn" type="submit">
-                <!-- Icone do Google Icons -->
-                <span class="material-icons">search</span>
-              </form>
-            </button>
-          </div>
         </div>
     </nav>
     <div class='wrapper'>
@@ -124,7 +171,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                         <div class="modal-body">
                             <center>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Voltar</button>
-                                <a type="button" class="btn btn-danger"  href='../functions/logout.php?sair=sim'>Sair</a>
+                                <a type="button" class="btn btn-danger" href='../functions/logout.php?sair=sim'>Sair</a>
                             </center>
                         </div>
                     </div>
@@ -171,11 +218,11 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 		
 		//Limitar os link antes depois
 		$max_links = 2;
-
-    
-		echo "</tbody>
+        ?>
+        </tbody>
         </table>
-        <a href='log.php?pagina=1'>Primeira</a> ";
+        <?php
+		echo "<a href='log.php?pagina=1'>Primeira</a> ";
 		
 		for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
 			if($pag_ant >= 1){
@@ -196,30 +243,30 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
         ?>
 
-                    
-                <div class='footer'>
-                    <!-- Footer -->
-                    <footer class='text-center ' style='background-color: #f39822'>
-                        <!-- Grid container -->
-                        <div class='container p-4'>
-                            <!-- Section: Text -->
 
-                            <!-- Section: Links -->
+                            <div class='footer'>
+                                <!-- Footer -->
+                                <footer class='text-center ' style='background-color: #f39822'>
+                                    <!-- Grid container -->
+                                    <div class='container p-4'>
+                                        <!-- Section: Text -->
 
-                        </div>
-                        <!-- Grid container -->
+                                        <!-- Section: Links -->
 
-                        <!-- Copyright -->
-                        <div class='text-center p-3' style='background-color: #f38022'>
-                            © 2021 Redepharma -
-                            <a class='text-dark' href='https://github.com/eliabeguerreiro'>Eliabe Paz</a> & <a
-                                class='text-dark' href='https://github.com/kcaiosouza'>Caio Souza</a>
-                        </div>
-                        <!-- Copyright -->
+                                    </div>
+                                    <!-- Grid container -->
 
-                    </footer>
-                    <!-- Footer -->
-                </div>
+                                    <!-- Copyright -->
+                                    <div class='text-center p-3' style='background-color: #f38022'>
+                                        © 2021 Redepharma -
+                                        <a class='text-dark' href='https://github.com/eliabeguerreiro'>Eliabe Paz</a> &
+                                        <a class='text-dark' href='https://github.com/kcaiosouza'>Caio Souza</a>
+                                    </div>
+                                    <!-- Copyright -->
+
+                                </footer>
+                                <!-- Footer -->
+                            </div>
             </div>
         </div>
 
