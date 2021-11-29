@@ -52,13 +52,29 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                 aria-expanded='false' aria-label='Toggle navigation'>
                 <span class='material-icons color-white'>reorder</span>
             </button>
-            <form class='d-flex' id='searchbar'>
-                <input class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
-                <button class='btn btn-redeph-search busca-btn' type='submit'>
-                    <!-- Icone do Google Icons -->
-                    <span class='material-icons'>search</span>
-            </form>
+            <div class="left-side">
+            <div class="dropdown">
+              <button class="btn btn-redeph-search dropdown-toggle justify-content-center align-items-center d-flex" type="button" data-toggle="dropdown"><span class="material-icons">
+                filter_alt
+                </span>
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu" style="
+              padding-left: 7px;
+          ">
+                <li><a href="#">Data</a></li>
+                <li><a href="#">Usuário</a></li>
+                <li><a href="#">Alteração</a></li>
+                <li><a href="#">Remoção</a></li>
+              </ul>
+            </div>
+            <form class="d-flex" id="searchbar">
+              <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
+              <button class="btn btn-redeph-search busca-btn" type="submit">
+                <!-- Icone do Google Icons -->
+                <span class="material-icons">search</span>
+              </form>
             </button>
+          </div>
         </div>
     </nav>
     <div class='wrapper'>
