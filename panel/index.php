@@ -206,7 +206,7 @@ if(!$_SESSION['usuario']['nome']){
                             }
                         }
                             
-                        echo "$pagina ";
+                        echo "<li class='page-item disabled'><span class='page-link'>$pagina</span> </li>";
                         
                         for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
                             if($pag_dep <= $quantidade_pg){
