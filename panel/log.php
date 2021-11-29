@@ -58,9 +58,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                 filter_alt
                 </span>
               <span class="caret"></span></button>
-              <ul class="dropdown-menu" style="
-              padding-left: 7px;
-          ">
+              <ul class="dropdown-menu" style="padding-left: 7px;">
                 <li><a href="#">Data</a></li>
                 <li><a href="#">Usuário</a></li>
                 <li><a href="#">Alteração</a></li>
