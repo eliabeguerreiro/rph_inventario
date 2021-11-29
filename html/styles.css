@@ -264,6 +264,9 @@ ul ul a {
       margin-top: 10px;
   }
 
+  .left-side{
+      display: flex;
+  }
 
   /* -=-=-=-=-=-=-=-=-=-=
      Configuração Print
