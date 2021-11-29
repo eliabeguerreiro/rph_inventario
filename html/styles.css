@@ -164,7 +164,8 @@ ul ul a {
 }
 
 #content {
-    height: 100%;
+    min-height: 100%;
+	position: relative;
 } 
 
 #customers {
@@ -207,6 +208,12 @@ ul ul a {
     justify-content: center;
 
     text-align: center;
+  }
+
+  div.body-content{
+    /** Altura do rodapé tem que ser igual a isso aqui e vice-versa **/
+      padding-bottom: 100px;
+      min-width: 100%;
   }
 
   .footer {
