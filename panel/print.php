@@ -39,8 +39,29 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
 <body>
     <div class='container'>
         <div class='row'>
-            
-                <?php              
+            <center>
+                <form class='noprint' action="">
+
+
+                    <form method="POST" action="" enctype="multipart/form-data">
+
+                        <label>Defina o Intervalo</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="identificador"
+                                placeholder="Digite um codigo identificador">
+                            <small id="emailHelp" class="form-text text-muted">Siga nessa ordem de preferencia:
+                                Numero MAC, Serial ou codigo exclusivo do item que esteja fisicamente visível.</small>
+                        </div>
+
+
+
+
+
+                        <br><br>
+                        <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
+
+                    </form>
+                    <?php              
                 $sql_ite = "SELECT * FROM `itens` LIMIT 42";
                 $sql_item = mysqli_query($conn, $sql_ite);
 
@@ -63,8 +84,13 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                     echo("</div></center><br><br></div>");
                 }
 
+                
                 ?>
-            
+                    <form>
+                        <input  class='noprint' type="button" value="Print this page" onClick="window.print()" />
+                    </form>
+
+
         </div>
     </div>
 </body>

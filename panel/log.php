@@ -67,10 +67,10 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                         $url = explode('&', $_SESSION['URL']);
                         
                 echo("
-                <li><a href='".$url['0']."&filtro=data'>Data</a></li>
-                <li><a href='".$url['0']."&filtro=user'>Usuário</a></li>
-                <li><a href='".$url['0']."&filtro=alter'>Alteração</a></li>
-                <li><a href='".$url['0']."&filtro=remov'>Remoção</a></li>
+                <li><a href='".$url['0']."filtro=data'>Data</a></li>
+                <li><a href='".$url['0']."filtro=user'>Usuário</a></li>
+                <li><a href='".$url['0']."filtro=alter'>Alteração</a></li>
+                <li><a href='".$url['0']."filtro=remov'>Remoção</a></li>
               ");
               ?>
                     </ul>
@@ -85,27 +85,32 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                         $filtro = (!empty($filtro_atual)) ? $filtro_atual : 'nenhum';   
 
                         if($filtro){
+                            if($filtro == 'nenhum'){
+                                //pesquisa sem filtro
+                                ?>
+                            
+        
+                            <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
+                            <button class="btn btn-redeph-search busca-btn" type="submit">
+                                <span class="material-icons">search</span>
+                                <?php
+                            }
+                            if($filtro == 'data'){
+                                echo("data");
+                            }
 
+                            if($filtro == 'user'){
+                                echo("user");
+                            }
 
+                            if($filtro == 'alter'){
+                                echo("alter");
+                            }
+                            
+                            if($filtro == 'remov'){
+                                echo("remov");
+                            }
 
-
-
-
-
-
-
-
-
-
-                        }elseif($filtro == 'nenhum'){
-                            //pesquisa sem filtro
-                            ?>
-    
-    
-                        <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
-                        <button class="btn btn-redeph-search busca-btn" type="submit">
-                            <span class="material-icons">search</span>
-                            <?php
                         }
 
                     }
