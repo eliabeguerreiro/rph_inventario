@@ -202,6 +202,9 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                             <?php
         
         $sqlL = "SELECT * FROM log_alteracao LIMIT $inicio, $qnt_result_pg";
+        echo('<br>');
+        echo($sqlL);
+        echo('<br>');
         $sqlLog = mysqli_query($conn, $sqlL);                                      
         while ($log = mysqli_fetch_assoc($sqlLog)){
             
