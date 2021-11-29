@@ -197,12 +197,12 @@ if(!$_SESSION['usuario']['nome']){
                 </table>
                 <?php   
 
-                        echo "<a href='".$_SESSION['URL']."&pagina=1'>Primeira</a> ";
+                        echo "<nav aria-label='Navegação de página'> <ul class='pagination justify-content-end'> <li class='page-item'> <a class='page-link' href='".$_SESSION['URL']."&pagina=1' tabindex='-1'>Primeira</a> </li>";
                         
                         for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
                             if($pag_ant >= 1){
                                 echo$_SESSION['URL'];
-                                echo "<a href='".$_SESSION['URL']."&pagina=$pag_ant'>$pag_ant</a> ";
+                                echo "<li class='page-item'><a class='page-link' href='".$_SESSION['URL']."&pagina=$pag_ant'>$pag_ant</a> </li>";
                             }
                         }
                             
@@ -210,11 +210,11 @@ if(!$_SESSION['usuario']['nome']){
                         
                         for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
                             if($pag_dep <= $quantidade_pg){
-                                echo "<a href='".$_SESSION['URL']."&pagina=$pag_dep'>$pag_dep</a> ";
+                                echo "<li class='page-item'><a class='page-link' href='".$_SESSION['URL']."&pagina=$pag_dep'>$pag_dep</a> </li>";
                             }
                         }
                         
-                        echo "<a href='".$_SESSION['URL']."&pagina=$quantidade_pg'>Ultima</a>";    
+                        echo "<li class='page-item'><a class='page-link' href='".$_SESSION['URL']."&pagina=$quantidade_pg'>Ultima</a> </li> </ul> </nav>";    
 
                     }
                      ?>
