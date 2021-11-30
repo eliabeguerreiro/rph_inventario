@@ -38,7 +38,7 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
 
 <body>
     <div class='container'>
-        <div>
+        <div class='row'>
             <center>
                 <form class='noprint' action="">
 
@@ -61,8 +61,7 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                         <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
 
                     </form>
-                    <div class="qr-container mt-3" style="display: flex; flex-wrap: wrap; flex-direction: row;">
-                        <?php              
+                    <?php              
                 $sql_ite = "SELECT * FROM `itens` LIMIT 42";
                 $sql_item = mysqli_query($conn, $sql_ite);
 
@@ -80,19 +79,18 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                     <img src='".$aux."' alt=''><br>
                     <a style='font-size: 30px;'>".$itens['id_item']."</a>
                     </div>");
-                    
-                    
+                
+                
                     echo("</div></center><br><br></div>");
                 }
-                
+
                 
                 ?>
-                </div>
                     <form>
                         <input  class='noprint' type="button" value="Print this page" onClick="window.print()" />
                     </form>
-                    
-                    
+
+
         </div>
     </div>
 </body>

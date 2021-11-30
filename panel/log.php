@@ -67,10 +67,10 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                         $url = explode('&', $_SESSION['URL']);
                         
                 echo("
-                <li><a href='".$url['0']."filtro=data'>Data</a></li>
-                <li><a href='".$url['0']."filtro=user'>Usuário</a></li>
-                <li><a href='".$url['0']."filtro=alter'>Alteração</a></li>
-                <li><a href='".$url['0']."filtro=remov'>Remoção</a></li>
+                <li><a href='".$url['0']."?filtro=data'>Data</a></li>
+                <li><a href='".$url['0']."?filtro=user'>Usuário</a></li>
+                <li><a href='".$url['0']."?filtro=alter'>Alteração</a></li>
+                <li><a href='".$url['0']."?filtro=remov'>Remoção</a></li>
               ");
               ?>
                     </ul>
@@ -81,19 +81,17 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
                     <?php
                     if($_GET){
-                        $filtro_atual = filter_input(INPUT_GET,'filtro', FILTER_SANITIZE_NUMBER_INT);		
+                        $filtro_atual = $_GET['filtro'];		
                         $filtro = (!empty($filtro_atual)) ? $filtro_atual : 'nenhum';   
 
                         if($filtro){
                             if($filtro == 'nenhum'){
                                 //pesquisa sem filtro
                                 ?>
-                            
-        
-                            <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
-                            <button class="btn btn-redeph-search busca-btn" type="submit">
-                                <span class="material-icons">search</span>
-                                <?php
+
+
+
+                    <?php
                             }
                             if($filtro == 'data'){
                                 echo("data");
@@ -111,14 +109,23 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                                 echo("remov");
                             }
 
+                        
+                        
                         }
 
+                    }else{
+                        echo("
+                            <input class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
+                            <button class='btn btn-redeph-search busca-btn' type='submit'>
+                                <span class='material-icons'>search</span>
+                                
+                                     
+                        ");
+                        
                     }
 
                 ?>
-                        <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
-                        <button class="btn btn-redeph-search busca-btn" type="submit">
-                            <span class="material-icons">search</span>
+                    
                 </form>
 
 
@@ -227,9 +234,9 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 		//Limitar os link antes depois
 		$max_links = 2;
         ?>
-        </tbody>
-        </table>
-        <?php
+                    </tbody>
+                </table>
+                <?php
 		echo "<a href='log.php?pagina=1'>Primeira</a> ";
 		
 		for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
@@ -252,29 +259,29 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
         ?>
 
 
-                            <div class='footer'>
-                                <!-- Footer -->
-                                <footer class='text-center ' style='background-color: #f39822'>
-                                    <!-- Grid container -->
-                                    <div class='container p-4'>
-                                        <!-- Section: Text -->
+                <div class='footer'>
+                    <!-- Footer -->
+                    <footer class='text-center ' style='background-color: #f39822'>
+                        <!-- Grid container -->
+                        <div class='container p-4'>
+                            <!-- Section: Text -->
 
-                                        <!-- Section: Links -->
+                            <!-- Section: Links -->
 
-                                    </div>
-                                    <!-- Grid container -->
+                        </div>
+                        <!-- Grid container -->
 
-                                    <!-- Copyright -->
-                                    <div class='text-center p-3' style='background-color: #f38022'>
-                                        © 2021 Redepharma -
-                                        <a class='text-dark' href='https://github.com/eliabeguerreiro'>Eliabe Paz</a> &
-                                        <a class='text-dark' href='https://github.com/kcaiosouza'>Caio Souza</a>
-                                    </div>
-                                    <!-- Copyright -->
+                        <!-- Copyright -->
+                        <div class='text-center p-3' style='background-color: #f38022'>
+                            © 2021 Redepharma -
+                            <a class='text-dark' href='https://github.com/eliabeguerreiro'>Eliabe Paz</a> &
+                            <a class='text-dark' href='https://github.com/kcaiosouza'>Caio Souza</a>
+                        </div>
+                        <!-- Copyright -->
 
-                                </footer>
-                                <!-- Footer -->
-                            </div>
+                    </footer>
+                    <!-- Footer -->
+                </div>
             </div>
         </div>
 
