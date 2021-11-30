@@ -15,7 +15,7 @@ $pagina_atual = filter_input(INPUT_GET,'pagina', FILTER_SANITIZE_NUMBER_INT);
 $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;                    
 //Setar a quantidade de itens por pagina
 $qnt_result_pg = 5;                  
-//calcular o inicio visualização
+//calcular o inicio 
 $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
 
@@ -63,6 +63,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                         <span class="caret"></span></button>
                     <ul class="dropdown-menu" style="padding-left: 7px;">
 
+<<<<<<< Updated upstream
                         <?php
                         $url = explode('&', $_SESSION['URL']);
                         
@@ -73,11 +74,19 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                 <li><a href='".$url['0']."filtro=remov'>Remoção</a></li>
               ");
               ?>
+=======
+                        <li><a href='log.php'>Pesquisa</a></li>
+                        <li><a href='?filtro=data'>Data</a></li>
+                        <li><a href='?filtro=user'>Usuário</a></li>
+                        <li><a href='?filtro=alter'>Alteração</a></li>
+                        <li><a href='?filtro=remov'>Remoção</a></li>
+>>>>>>> Stashed changes
                     </ul>
                 </div>
 
 
-                <form class="d-flex" id="searchbar">
+
+                <form  method='GET'class="d-flex" id="searchbar" action="">
 
                     <?php
                     if($_GET){
@@ -88,20 +97,54 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                             if($filtro == 'nenhum'){
                                 //pesquisa sem filtro
                                 ?>
+<<<<<<< Updated upstream
                             
         
                             <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
                             <button class="btn btn-redeph-search busca-btn" type="submit">
                                 <span class="material-icons">search</span>
                                 <?php
+=======
+                                <input class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
+                            <button class='btn btn-redeph-search busca-btn' type='submit'>
+                                <span class='material-icons'>search</span>
+
+
+                    <?php
+>>>>>>> Stashed changes
                             }
                             if($filtro == 'data'){
-                                echo("data");
+                                echo("                                
+                                <input class='form-control me-2' type='date' placeholder='Selecione a Data' aria-label='Search'>
+                                <button class='btn btn-redeph-search busca-btn' type='submit'>
+                                <span class='material-icons'>search</span>
+                                ");
+
+
                             }
 
                             if($filtro == 'user'){
-                                echo("user");
+                                $usuar = "SELECT nome FROM usuarios";
+                                $usuarios = mysqli_query($conn, $usuar);
+                                $row_usuarios = mysqli_fetch_assoc($usuarios);
+
+                                echo("
+                                <select class='form-control' name='user'>
+                                    <option value=''>Selecione o usuario</option>
+                                    
+                                ");
+                                
+                                while ($user = mysqli_fetch_assoc($usuarios)){
+                                    echo("<option value='".$user['nome']."'>".$user['nome']."</option>");                            
+                                }
+                                echo ("</select>
+                                
+                                <button class='btn btn-redeph-search busca-btn' type='submit'>
+                                <span class='material-icons'>search</span>");
                             }
+                            
+                            /*
+                                adicionar como segundo filtro
 
                             if($filtro == 'alter'){
                                 echo("alter");
@@ -110,6 +153,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                             if($filtro == 'remov'){
                                 echo("remov");
                             }
+<<<<<<< Updated upstream
 
                         }
 
@@ -119,6 +163,26 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                         <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
                         <button class="btn btn-redeph-search busca-btn" type="submit">
                             <span class="material-icons">search</span>
+=======
+                            */
+                        
+                        
+                        }
+
+                    }else{
+                        echo("
+                            <input name='pesquisa' class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
+                            <button class='btn btn-redeph-search busca-btn' type='submit'>
+                                <span class='material-icons'>search</span>
+                                
+                                     
+                        ");
+                        
+                    }
+
+                ?>
+
+>>>>>>> Stashed changes
                 </form>
 
 
@@ -191,7 +255,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                 <table id='customers'>
                     <tbody>
                         <tr>
-                            <th>Alterações</th>
+                            <th>Log de ações</th>
                             <th></th>
                             <th></th>
                             <th></th>
