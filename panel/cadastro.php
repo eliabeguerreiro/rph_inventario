@@ -248,4 +248,3 @@ if($_POST){
 </body>
 
 </html>
-<?php
