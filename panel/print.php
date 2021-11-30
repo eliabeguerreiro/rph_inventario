@@ -49,16 +49,13 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                         <div class="col-md-8">
                             <input class="form-control" type="text" name="identificador"
                                 placeholder="Digite um codigo identificador">
-                            <small id="emailHelp" class="form-text text-muted">Siga nessa ordem de preferencia:
-                                Numero MAC, Serial ou codigo exclusivo do item que esteja fisicamente visível.</small>
+                            <small id="emailHelp" class="form-text text-muted">A pagina suporta apenas 42 qr-codes. Digite o ID de um produto e filtre a pagina, que aparecera o qr-code deste e dos proximos 41 produtos em ordem de cadastro.</small>
                         </div>
 
 
 
-
-
                         <br><br>
-                        <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
+                        <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Filtrar"><br>
 
                     </form>
                     <div class="qr-container mt-3" style="display: flex; flex-wrap: wrap; flex-direction: row;">
@@ -99,5 +96,3 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
 
 
 </html>
-
-<?php
