@@ -263,8 +263,7 @@ if(!$_SESSION['usuario']['nome']){
 
 
 </html>
-<?php
-  
+
   
 
 
