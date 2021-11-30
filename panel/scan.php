@@ -141,9 +141,9 @@ include("../functions/fun.php");
                                     $informa = mysqli_fetch_assoc($info);
                                     echo("<tr>");
                                     echo("<td>ID do item: ".$informa['id_item']."</td><br>");
-                                    echo("<td>ID do usuario: ".$informa['identificador']."</td><br>");
-                                    echo("<td>Descrição da ação: ".$informa['data_compra']."</td><br>");
-                                    echo("<td>Data de alteração: ".$informa['loja']."</td><br>");
+                                    echo("<td>Identificador: ".$informa['identificador']."</td><br>");
+                                    echo("<td>Data de compra: ".$informa['data_compra']."</td><br>");
+                                    echo("<td>Loja atual: ".$informa['loja']."</td><br>");
                                     echo("</tr>");              
 
                                 }
