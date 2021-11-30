@@ -1,4 +1,8 @@
 <?php
+session_start();
+include("../functions/connection.php");
+include("../functions/fun.php");
+
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +34,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-light bg-redeph ">
+    <nav class="navbar navbar-light bg-redeph ">
         <div class="container-fluid">
             <button class="navbar-toggler bg-redeph-dark" id="sidebarCollapse" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
@@ -107,15 +111,54 @@
                             <label>SCAN QR CODE</label>
                             <input id="code" value="Aquardando QRCode">
                             <script>
-                                function getCode() {
-                                    var qrcode = document.getElementById('code').value;
-                                    location.href='?codigo=' + qrcode
-                                }
+                            function getCode() {
+                                var qrcode = document.getElementById('code').value;
+                                location.href = '?codigo=' + qrcode
+                            }
                             </script>
-                            <button onclick="getCode()" id="btn-hidden" class="btn btn-primary" style="display: none">Coletar Informações</button><br>
+                            <button onclick="getCode()" id="btn-hidden" class="btn btn-primary"
+                                style="display: none">Coletar Informações</button><br>
                         </div>
+
+                        <!-- Resultados -->
+                        <div class="col-md-6">
+                            <tbody>
+                                <tr>
+                                    <th>Informações</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                <br>
+
+                                    <?php
+                                if($_GET){
+
+                                    $inf = "SELECT * FROM itens WHERE id_item = '".$_GET['codigo']."'";
+                                    $info = mysqli_query($conn, $inf);
+                                    $informa = mysqli_fetch_assoc($info);
+                                    echo("<tr>");
+                                    echo("<td>ID do item: ".$informa['id_item']."</td><br>");
+                                    echo("<td>ID do usuario: ".$informa['identificador']."</td><br>");
+                                    echo("<td>Descrição da ação: ".$informa['data_compra']."</td><br>");
+                                    echo("<td>Data de alteração: ".$informa['loja']."</td><br>");
+                                    echo("</tr>");              
+
+                                }
+                            
+
+                            
+
+                            ?>
+                            </tbody>
+                            </table>
+                        </div>
+
+
                     </div>
-                    </div>
+                </div>
                 <div class="footer ">
                     <!-- Footer -->
                     <footer class="text-center" style="background-color: #f39822">
