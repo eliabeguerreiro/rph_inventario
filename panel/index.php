@@ -98,7 +98,7 @@ if(!$_SESSION['usuario']['nome']){
                     <a href="print.php">Imprimir</a>
                 </li>
                 <li>
-                    <a href="#">Leitor</a>
+                    <a href="scan.php">Leitor</a>
                 </li>
                 <li>
                     <a href="log.php">Log de alterações</a>
@@ -174,7 +174,6 @@ if(!$_SESSION['usuario']['nome']){
                             <td>Loja: ".$row_usuario['loja']."</td>
                             <td>Modelo: ".$row_usuario['modelo']."</td>
                             <td></td>
-
                             <td> <a href='edit.php?del=n&id=".$row_usuario['id_item']."' type='button' class='btn btn-primary'>Editar</a>  
                             <a href='edit.php?del=y&id=".$row_usuario['id_item']."' type='button' class='btn btn-danger'>Apagar</a> </td>
                         </tr>
@@ -263,8 +262,3 @@ if(!$_SESSION['usuario']['nome']){
 
 
 </html>
-<?php
-  
-  
-
-
