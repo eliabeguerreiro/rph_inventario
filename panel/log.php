@@ -15,7 +15,7 @@ $pagina_atual = filter_input(INPUT_GET,'pagina', FILTER_SANITIZE_NUMBER_INT);
 $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;                    
 //Setar a quantidade de itens por pagina
 $qnt_result_pg = 5;                  
-//calcular o inicio visualização
+//calcular o inicio 
 $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
 
@@ -63,43 +63,66 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                         <span class="caret"></span></button>
                     <ul class="dropdown-menu" style="padding-left: 7px;">
 
-                        <?php
-                        $url = explode('&', $_SESSION['URL']);
-                        
-                echo("
-                <li><a href='".$url['0']."?filtro=data'>Data</a></li>
-                <li><a href='".$url['0']."?filtro=user'>Usuário</a></li>
-                <li><a href='".$url['0']."?filtro=alter'>Alteração</a></li>
-                <li><a href='".$url['0']."?filtro=remov'>Remoção</a></li>
-              ");
-              ?>
+                        <li><a href='log.php'>Pesquisa</a></li>
+                        <li><a href='?filtro=data'>Data</a></li>
+                        <li><a href='?filtro=user'>Usuário</a></li>
+                        <li><a href='?filtro=alter'>Alteração</a></li>
+                        <li><a href='?filtro=remov'>Remoção</a></li>
                     </ul>
                 </div>
 
 
-                <form class="d-flex" id="searchbar">
+
+                <form  method='GET'class="d-flex" id="searchbar" action="">
 
                     <?php
                     if($_GET){
-                        $filtro_atual = $_GET['filtro'];		
+                        $filtro_atual = filter_input(INPUT_GET,'filtro', FILTER_SANITIZE_NUMBER_INT);		
                         $filtro = (!empty($filtro_atual)) ? $filtro_atual : 'nenhum';   
 
                         if($filtro){
                             if($filtro == 'nenhum'){
                                 //pesquisa sem filtro
                                 ?>
-
+                                <input class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
+                            <button class='btn btn-redeph-search busca-btn' type='submit'>
+                                <span class='material-icons'>search</span>
 
 
                     <?php
                             }
                             if($filtro == 'data'){
-                                echo("data");
+                                echo("                                
+                                <input class='form-control me-2' type='date' placeholder='Selecione a Data' aria-label='Search'>
+                                <button class='btn btn-redeph-search busca-btn' type='submit'>
+                                <span class='material-icons'>search</span>
+                                ");
+
+
                             }
 
                             if($filtro == 'user'){
-                                echo("user");
+                                $usuar = "SELECT nome FROM usuarios";
+                                $usuarios = mysqli_query($conn, $usuar);
+                                $row_usuarios = mysqli_fetch_assoc($usuarios);
+
+                                echo("
+                                <select class='form-control' name='user'>
+                                    <option value=''>Selecione o usuario</option>
+                                    
+                                ");
+                                
+                                while ($user = mysqli_fetch_assoc($usuarios)){
+                                    echo("<option value='".$user['nome']."'>".$user['nome']."</option>");                            
+                                }
+                                echo ("</select>
+                                
+                                <button class='btn btn-redeph-search busca-btn' type='submit'>
+                                <span class='material-icons'>search</span>");
                             }
+                            
+                            /*
+                                adicionar como segundo filtro
 
                             if($filtro == 'alter'){
                                 echo("alter");
@@ -108,14 +131,14 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                             if($filtro == 'remov'){
                                 echo("remov");
                             }
-
+                            */
                         
                         
                         }
 
                     }else{
                         echo("
-                            <input class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
+                            <input name='pesquisa' class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
                             <button class='btn btn-redeph-search busca-btn' type='submit'>
                                 <span class='material-icons'>search</span>
                                 
@@ -125,7 +148,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                     }
 
                 ?>
-                    
+
                 </form>
 
 
@@ -198,7 +221,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                 <table id='customers'>
                     <tbody>
                         <tr>
-                            <th>Alterações</th>
+                            <th>Log de ações</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -234,9 +257,9 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 		//Limitar os link antes depois
 		$max_links = 2;
         ?>
-                    </tbody>
-                </table>
-                <?php
+        </tbody>
+        </table>
+        <?php
 		echo "<a href='log.php?pagina=1'>Primeira</a> ";
 		
 		for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
@@ -259,29 +282,29 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
         ?>
 
 
-                <div class='footer'>
-                    <!-- Footer -->
-                    <footer class='text-center ' style='background-color: #f39822'>
-                        <!-- Grid container -->
-                        <div class='container p-4'>
-                            <!-- Section: Text -->
+                            <div class='footer'>
+                                <!-- Footer -->
+                                <footer class='text-center ' style='background-color: #f39822'>
+                                    <!-- Grid container -->
+                                    <div class='container p-4'>
+                                        <!-- Section: Text -->
 
-                            <!-- Section: Links -->
+                                        <!-- Section: Links -->
 
-                        </div>
-                        <!-- Grid container -->
+                                    </div>
+                                    <!-- Grid container -->
 
-                        <!-- Copyright -->
-                        <div class='text-center p-3' style='background-color: #f38022'>
-                            © 2021 Redepharma -
-                            <a class='text-dark' href='https://github.com/eliabeguerreiro'>Eliabe Paz</a> &
-                            <a class='text-dark' href='https://github.com/kcaiosouza'>Caio Souza</a>
-                        </div>
-                        <!-- Copyright -->
+                                    <!-- Copyright -->
+                                    <div class='text-center p-3' style='background-color: #f38022'>
+                                        © 2021 Redepharma -
+                                        <a class='text-dark' href='https://github.com/eliabeguerreiro'>Eliabe Paz</a> &
+                                        <a class='text-dark' href='https://github.com/kcaiosouza'>Caio Souza</a>
+                                    </div>
+                                    <!-- Copyright -->
 
-                    </footer>
-                    <!-- Footer -->
-                </div>
+                                </footer>
+                                <!-- Footer -->
+                            </div>
             </div>
         </div>
 

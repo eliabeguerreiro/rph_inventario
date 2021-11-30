@@ -9,9 +9,6 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
     header("Location: ../index.php");
 } 
 
-
-//qr code
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

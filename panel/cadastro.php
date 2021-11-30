@@ -123,7 +123,8 @@ if($_POST){
                     <div class="modal-body">
                         <center>
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Voltar</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" href='../functions/logout.php?sair=sim'>Sair</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                href='../functions/logout.php?sair=sim'>Sair</button>
                         </center>
                     </div>
                 </div>
@@ -131,97 +132,100 @@ if($_POST){
             </div>
         </div>
         <div id="content" style="flex: auto;">
-        <div id="content-container">
+            <div id="content-container">
 
 
-            
-            <div class="form-group " style="padding: 20px 20px 170px 20px;">
 
-                <?php    
+                <div class="form-group " style="padding: 20px 20px 170px 20px;">
+
+                    <?php    
                     if(isset($_SESSION['msg'])){
                         msg_sistem($_SESSION['msg']);
                         unset($_SESSION['msg']);
                     }
                     ?>
-                <center>
-                    <form method="POST" action="" enctype="multipart/form-data">
-                        
-                        <label>Identificador</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" name="identificador"
-                            placeholder="Digite um codigo identificador">
-                            <small id="emailHelp" class="form-text text-muted">Siga nessa ordem de preferencia:
-                                Numero MAC, Serial ou codigo exclusivo do item que esteja fisicamente visível.</small>
+                    <center>
+                        <form method="POST" action="" enctype="multipart/form-data">
+
+                            <label>Identificador</label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" name="identificador"
+                                    placeholder="Digite um codigo identificador">
+                                <small id="emailHelp" class="form-text text-muted">Siga nessa ordem de preferencia:
+                                    Numero MAC, Serial ou codigo exclusivo do item que esteja fisicamente
+                                    visível.</small>
                             </div>
                             <br>
                             <br>
-                            
+
                             <label>Número da loja</label>
                             <div class="col-md-8">
-                                <input class="form-control" type="number" name="loja" placeholder="Digite o codigo da loja">
+                                <input class="form-control" type="number" name="loja"
+                                    placeholder="Digite o codigo da loja">
                                 <small id="emailHelp" class="form-text text-muted">Sempre insira 2 digitos. Exemplo:
                                     01, 05, 15 </small>
-                                </div>
-                                <br>
+                            </div>
+                            <br>
 
-                                <label>Modelo</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" type="text" name="tipo" placeholder="Digite o modelo do item">
-                                    <small id="emailHelp" class="form-text text-muted">O modelo será padronizado em marca +
-                                        modelo.
-                                        Ex: hp officejet pro 6970 | lg flatron 24bl550j-b</small>
-                                    </div>
-                                    <br>
-                                    
-                                    <label>Tipo</label>
-                                    <div class="col-md-8" style="padding-left: 15px;">
-                                        <select class="form-control" name="modelo">
-                                            <option value="">Selecione o modelo</option>
-                                            <option value="desktop">Desktop</option>
-                                            <option value="monitor">Monitor</option>
-                                            <option value="equipamento_rede">Equipamento de Rede</option>
-                                            <option value="nobrake">Nobrake</option>
-                                            <option value="leitor">Leitor</option>
-                                            <option value="impressora">Impressora</option>
-                                            <option value="equipamento_audiovisual">Equipamento Audiovisual</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <br>
-                                    
-                                    <label>Data Aquisição/Registro</label>
-                                    <div class="col-md-8">
-                            <input class="form-control" type="date" name="data_c"
-                            placeholder="Digite a data de nascimento">
-                            <small id="emailHelp" class="form-text text-muted">Opcional</small>
+                            <label>Modelo</label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" name="tipo"
+                                    placeholder="Digite o modelo do item">
+                                <small id="emailHelp" class="form-text text-muted">O modelo será padronizado em marca +
+                                    modelo.
+                                    Ex: hp officejet pro 6970 | lg flatron 24bl550j-b</small>
+                            </div>
+                            <br>
+
+                            <label>Tipo</label>
+                            <div class="col-md-8" style="padding-left: 15px;">
+                                <select class="form-control" name="modelo">
+                                    <option value="">Selecione o modelo</option>
+                                    <option value="desktop">Desktop</option>
+                                    <option value="monitor">Monitor</option>
+                                    <option value="equipamento_rede">Equipamento de Rede</option>
+                                    <option value="nobrake">Nobrake</option>
+                                    <option value="leitor">Leitor</option>
+                                    <option value="impressora">Impressora</option>
+                                    <option value="equipamento_audiovisual">Equipamento Audiovisual</option>
+                                </select>
+                            </div>
+
+                            <br>
+
+                            <label>Data Aquisição/Registro</label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="date" name="data_c"
+                                    placeholder="Digite a data de nascimento">
+                                <small id="emailHelp" class="form-text text-muted">Opcional</small>
+                            </div>
+
+                            <br><br>
+                            <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
+
+                        </form>
+                    </center>
+                </div>
+                <div class="footer ">
+                    <!-- Footer -->
+                    <footer class="text-center" style="background-color: #f39822">
+
+                        <div class="container p-4">
                         </div>
 
-                        <br><br>
-                        <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
-                        
-                    </form>
-                </center>
-            </div>
-            <div class="footer ">
-                <!-- Footer -->
-                <footer class="text-center" style="background-color: #f39822">
-                    
-                    <div class="container p-4">                         
-                        </div>
-                        
                         <div class="text-center p-3" style="background-color: #f38022">
                             © 2021 Redepharma -
                             <a class="text-dark" href="https://github.com/eliabeguerreiro">Eliabe Paz</a> & <a
-                            class="text-dark" href="https://github.com/kcaiosouza">Caio Souza</a>
+                                class="text-dark" href="https://github.com/kcaiosouza">Caio Souza</a>
                         </div>
-                    <!-- Copyright -->
-                    
-                </footer>
-                <!-- Footer -->
+                        <!-- Copyright -->
+
+                    </footer>
+                    <!-- Footer -->
+                </div>
             </div>
         </div>
-    </div>
-        
+
 
     </div>
 
