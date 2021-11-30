@@ -97,4 +97,3 @@ if($btnCadUsuario){
             </script>
         </body>
     </html>
-<?php
