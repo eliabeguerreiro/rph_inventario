@@ -98,7 +98,7 @@ if(!$_SESSION['usuario']['nome']){
                     <a href="print.php">Imprimir</a>
                 </li>
                 <li>
-                    <a href="#">Leitor</a>
+                    <a href="scan.php">Leitor</a>
                 </li>
                 <li>
                     <a href="log.php">Log de alterações</a>
