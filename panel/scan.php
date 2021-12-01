@@ -14,7 +14,7 @@ include("../functions/fun.php");
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js">
     </script>
     <!-- Script do leitor de QRCODE (tive que baixar uma versão anterior pois a mais atual etava dando erro) -->
-    <script type="text/javascript" src="./instascan.min.js"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -101,37 +101,51 @@ include("../functions/fun.php");
 
 
                 <div class="form-group " style="padding: 20px 20px 170px 20px;">
-                    <div class="row">
-                        <!-- Camera -->
-                        <div class="col-md-6">
-                            <video id="preview" width="100%"></video>
-                        </div>
-                        <!-- Código do QRCode -->
-                        <div class="col-md-6">
-                            <label>SCAN QR CODE</label>
-                            <input id="code" value="Aquardando QRCode">
-                            <script>
-                            function getCode() {
-                                var qrcode = document.getElementById('code').value;
-                                location.href = '?codigo=' + qrcode
-                            }
-                            </script>
-                            <button onclick="getCode()" id="btn-hidden" class="btn btn-primary"
-                                style="display: none">Coletar Informações</button><br>
+                    <div class="classnoname"
+                        style="display: flex; flex-direction: column; justify-content: center; align-content: center; align-items: center;">
+                        <div class="qr-id">
+                            <!-- Camera -->
+                            <div class="video-container">
+                                <video id="preview" width="290px"></video>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content: center; align-content: center; align-items: center;" class="btn-group btn-group-toggle mb-5 a" data-toggle="buttons">
+                                <label class="btn btn-redeph active">
+                                    <input type="radio" name="options" value="1" autocomplete="off"> Frontal
+                                </label>
+                                <label class="btn btn-redeph-dark">
+                                    <input type="radio" name="options" value="2" autocomplete="off" checked> Traseira
+                                </label>
+                            </div>
+                            <!-- Código do QRCode -->
+
+                            <div class="container-scan">
+                                <div class="getInfo-area">
+                                    <div class="id-area">
+                                        <label>ID: </label>
+                                        <input disabled id="code" value="Aguardando QRCode...">
+                                    </div>
+                                    <script>
+                                    function getCode() {
+                                        var qrcode = document.getElementById('code').value;
+                                        location.href = '?codigo=' + qrcode
+                                    }
+                                    </script>
+                                    <button onclick="getCode()" id="btn-hidden" class="btn btn-rdphama"
+                                        style="display: none">Coletar Informações</button><br>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Resultados -->
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="display: flex; flex-direction: column">
                             <tbody>
                                 <tr>
-                                    <th>Informações</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <tb class="title">Informações</tb>
+                                    <tb class="item-info-stl"></tb>
+                                    <tb class="item-info-stl"></tb>
                                 </tr>
                                 <tr>
-                                <br>
+                                    <br>
 
                                     <?php
                                 if($_GET){
@@ -139,11 +153,11 @@ include("../functions/fun.php");
                                     $inf = "SELECT * FROM itens WHERE id_item = '".$_GET['codigo']."'";
                                     $info = mysqli_query($conn, $inf);
                                     $informa = mysqli_fetch_assoc($info);
-                                    echo("<tr>");
-                                    echo("<td>ID do item: ".$informa['id_item']."</td><br>");
-                                    echo("<td>Identificador: ".$informa['identificador']."</td><br>");
-                                    echo("<td>Data de compra: ".$informa['data_compra']."</td><br>");
-                                    echo("<td>Loja atual: ".$informa['loja']."</td><br>");
+                                    echo("<tr class='item-info-stl'>");
+                                    echo("<tb class='item-info-stl'>ID do item: ".$informa['id_item']."</tb>");
+                                    echo("<tb class='item-info-stl'>Identificador: ".$informa['identificador']."</tb>");
+                                    echo("<tb class='item-info-stl'>Data de compra: ".$informa['data_compra']."</tb>");
+                                    echo("<tb class='item-info-stl'>Loja atual: ".$informa['loja']."</tb>");
                                     echo("</tr>");              
 
                                 }
@@ -155,7 +169,6 @@ include("../functions/fun.php");
                             </tbody>
                             </table>
                         </div>
-
 
                     </div>
                 </div>
@@ -216,19 +229,30 @@ include("../functions/fun.php");
     });
     // Aqui ele recebe todas as câmeras existentes (no caso do celular, frontal e traseira);
     Instascan.Camera.getCameras().then(function(cameras) {
-        // se o numero de câmeras forem maior que zero, ele vai mostrar a câmera: 0(frontal) 1(traseira)
-        if (cameras.length > 1) {
+        if (cameras.length > 0) {
             scanner.start(cameras[1]);
-            // se o numero for 0 ele vai alertar que não foi encontrado nenhuma câmera 
-        } else if (cameras.length < 1 && cameras.length > 0) {
-            scanner.start(cameras[0]);
+            $('[name="options"]').on('change', function() {
+                if ($(this).val() == 1) {
+                    if (cameras[0] != "") {
+                        scanner.start(cameras[0]);
+                    } else {
+                        alert('Não foi encontrada a câmera');
+                    }
+                } else if ($(this).val() == 2) {
+                    if (cameras[1] != "") {
+                        scanner.start(cameras[1]);
+                    } else {
+                        alert('Não foi encontrada a câmera');
+                    }
+                }
+            });
         } else {
-            alert('Não foi encontrada nenhuma câmera :(');
-            console.log("Não foi encontrada nenhuma câmera :(")
+            console.error('Nenhuma câmera foi encontrada :(');
+            alert('Nenhuma câmera foi encontrada :(');
         }
-        // Se ele não conseguir coletar as informações da câmera, ele vai alertar um erro no console 
     }).catch(function(e) {
-        console.error(e)
+        console.error(e);
+        alert(e);
     });
     </script>
 </body>

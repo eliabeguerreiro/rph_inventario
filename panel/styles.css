@@ -8,6 +8,15 @@
     background-color: #f38022;
 }
 
+.btn-redeph-dark {
+    background-color: #8f1838;
+    color: #fff;
+}
+
+.btn-redeph {
+    background-color: #f38022;
+    color: #fff;
+}
 .bg-redeph-dark {
     background-color: #8f1838;
 }
@@ -153,6 +162,11 @@ ul ul a {
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 */
 
+.btn-rdphama {
+    background-color: #f38022;
+    color: #fff;
+}
+
 #content-container {
     height: 100%;
     display: flex;
@@ -267,6 +281,83 @@ ul ul a {
   .left-side{
       display: flex;
   }
+
+  .video-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: auto;
+      
+      padding-bottom: 15px;
+  }
+
+  .video-container video {
+      border-style: solid;
+      border-radius: 15px;
+      border-color: #f38022;
+      border-width: 2px;
+  }
+
+  .id-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+  }
+
+  .id-area input {
+      border: 0;
+      background-color: #fafafa;
+      font-size: 18px;
+      font-weight: bold;
+      padding-top: 0;
+      padding-left: 8px;
+      margin-top: -5px !important;
+      margin: 0
+  }
+
+  .getInfo-area {
+      display: flex;
+      flex: auto;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+  }
+
+  .item-info-stl{
+      background-color: #f39822;
+      border-style: solid;
+      border-left-width: 6px;
+      border-right-width: 0;
+      border-top-width: 0;
+      border-bottom-width: 0;
+      border-color: #8f1838;
+      flex: auto;
+      display: flex;
+      width: 100%;
+      padding-left: 3px;
+      color: #f5f5f5;
+  }
+
+  .title {
+      font-size: 20px;
+      color: #8f1838;
+      font-weight: bold;
+  }
+
+  .container-scan{
+      display: flex;
+      flex: auto;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .qr-id{
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+  }
+
 
   /* -=-=-=-=-=-=-=-=-=-=
      Configuração Print
