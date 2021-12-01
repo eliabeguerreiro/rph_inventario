@@ -76,11 +76,14 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                 <form  method='GET'class="d-flex" id="searchbar" action="">
 
                     <?php
+                    
                     if($_GET){
-                        $filtro_atual = filter_input(INPUT_GET,'filtro', FILTER_SANITIZE_NUMBER_INT);		
+                        
+                        $filtro_atual = filter_input(INPUT_GET,'filtro', FILTER_SANITIZE_STRING);		
                         $filtro = (!empty($filtro_atual)) ? $filtro_atual : 'nenhum';   
 
                         if($filtro){
+                            
                             if($filtro == 'nenhum'){
                                 //pesquisa sem filtro
                                 ?>
