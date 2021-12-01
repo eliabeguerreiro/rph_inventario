@@ -101,37 +101,42 @@ include("../functions/fun.php");
 
 
                 <div class="form-group " style="padding: 20px 20px 170px 20px;">
-                    <div class="row">
-                        <!-- Camera -->
-                        <div class="col-md-6">
-                            <video id="preview" width="100%"></video>
-                        </div>
-                        <!-- Código do QRCode -->
-                        <div class="col-md-6">
-                            <label>SCAN QR CODE</label>
-                            <input id="code" value="Aquardando QRCode">
-                            <script>
-                            function getCode() {
-                                var qrcode = document.getElementById('code').value;
-                                location.href = '?codigo=' + qrcode
-                            }
-                            </script>
-                            <button onclick="getCode()" id="btn-hidden" class="btn btn-primary"
-                                style="display: none">Coletar Informações</button><br>
+                    <div class="classnoname" style="display: flex; flex-direction: column; justify-content: center; align-content: center; align-items: center;">
+                        <div class="qr-id">
+                            <!-- Camera -->
+                            <div class="video-container">
+                                <video id="preview" width="290px"></video>
+                            </div>
+                            <!-- Código do QRCode -->
+
+                            <div class="container-scan">
+                                <div class="getInfo-area">
+                                    <div class="id-area">
+                                        <label>ID: </label>
+                                        <input disabled id="code" value="Aguardando QRCode...">
+                                    </div>
+                                    <script>
+                                    function getCode() {
+                                        var qrcode = document.getElementById('code').value;
+                                        location.href = '?codigo=' + qrcode
+                                    }
+                                    </script>
+                                    <button onclick="getCode()" id="btn-hidden" class="btn btn-rdphama"
+                                        style="display: none">Coletar Informações</button><br>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Resultados -->
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="display: flex; flex-direction: column">
                             <tbody>
                                 <tr>
-                                    <th>Informações</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <tb class="title">Informações</tb>
+                                    <tb class="item-info-stl"></tb>
+                                    <tb class="item-info-stl"></tb>
                                 </tr>
                                 <tr>
-                                <br>
+                                    <br>
 
                                     <?php
                                 if($_GET){
@@ -139,11 +144,11 @@ include("../functions/fun.php");
                                     $inf = "SELECT * FROM itens WHERE id_item = '".$_GET['codigo']."'";
                                     $info = mysqli_query($conn, $inf);
                                     $informa = mysqli_fetch_assoc($info);
-                                    echo("<tr>");
-                                    echo("<td>ID do item: ".$informa['id_item']."</td><br>");
-                                    echo("<td>Identificador: ".$informa['identificador']."</td><br>");
-                                    echo("<td>Data de compra: ".$informa['data_compra']."</td><br>");
-                                    echo("<td>Loja atual: ".$informa['loja']."</td><br>");
+                                    echo("<tr class='item-info-stl'>");
+                                    echo("<tb class='item-info-stl'>ID do item: ".$informa['id_item']."</tb>");
+                                    echo("<tb class='item-info-stl'>Identificador: ".$informa['identificador']."</tb>");
+                                    echo("<tb class='item-info-stl'>Data de compra: ".$informa['data_compra']."</tb>");
+                                    echo("<tb class='item-info-stl'>Loja atual: ".$informa['loja']."</tb>");
                                     echo("</tr>");              
 
                                 }
@@ -155,7 +160,6 @@ include("../functions/fun.php");
                             </tbody>
                             </table>
                         </div>
-
 
                     </div>
                 </div>
