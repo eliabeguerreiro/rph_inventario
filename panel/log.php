@@ -11,6 +11,8 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
 } 
 
 
+var_dump($_POST);
+
 $pagina_atual = filter_input(INPUT_GET,'pagina', FILTER_SANITIZE_NUMBER_INT);		
 $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;                    
 //Setar a quantidade de itens por pagina
@@ -66,14 +68,12 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                         <li><a href='log.php'>Pesquisa</a></li>
                         <li><a href='?filtro=data'>Data</a></li>
                         <li><a href='?filtro=user'>Usuário</a></li>
-                        <li><a href='?filtro=alter'>Alteração</a></li>
-                        <li><a href='?filtro=remov'>Remoção</a></li>
                     </ul>
                 </div>
 
 
 
-                <form  method='GET'class="d-flex" id="searchbar" action="">
+                <form method='GET' class="d-flex" id="searchbar" action="">
 
                     <?php
                     
@@ -83,31 +83,39 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                         $filtro = (!empty($filtro_atual)) ? $filtro_atual : 'nenhum';   
 
                         if($filtro){
-                            
+                             
+                            $primeiro_filtro = 
+                            $filtro; 
+
+
                             if($filtro == 'nenhum'){
                                 //pesquisa sem filtro
                                 ?>
-                                <input class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
-                            <button class='btn btn-redeph-search busca-btn' type='submit'>
-                                <span class='material-icons'>search</span>
+                    <input class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
+                    <button class='btn btn-redeph-search busca-btn' type='submit'>
+                        <span class='material-icons'>search</span>
 
 
-                    <?php
+                        <?php
                             }
                             if($filtro == 'data'){
+
+                                
+                                //$usuar = "SELECT * FROM usuarios where data_compra = '".$_POST['']."'";
+                                
+
                                 echo("                                
                                 <input class='form-control me-2' type='date' placeholder='Selecione a Data' aria-label='Search'>
                                 <button class='btn btn-redeph-search busca-btn' type='submit'>
                                 <span class='material-icons'>search</span>
                                 ");
 
-
                             }
 
                             if($filtro == 'user'){
-                                $usuar = "SELECT nome FROM usuarios";
-                                $usuarios = mysqli_query($conn, $usuar);
-                                $row_usuarios = mysqli_fetch_assoc($usuarios);
+                                $sql_l = "SELECT nome FROM usuarios";
+                                $sql_log = mysqli_query($conn, $sql_l);
+                                $row_logs = mysqli_fetch_assoc($sql_log);
 
                                 echo("
                                 <select class='form-control' name='user'>
@@ -115,7 +123,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                                     
                                 ");
                                 
-                                while ($user = mysqli_fetch_assoc($usuarios)){
+                                while ($row_logs = mysqli_fetch_assoc($usuarios)){
                                     echo("<option value='".$user['nome']."'>".$user['nome']."</option>");                            
                                 }
                                 echo ("</select>
@@ -124,18 +132,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                                 <span class='material-icons'>search</span>");
                             }
                             
-                            /*
-                                adicionar como segundo filtro
-
-                            if($filtro == 'alter'){
-                                echo("alter");
-                            }
                             
-                            if($filtro == 'remov'){
-                                echo("remov");
-                            }
-                            */
-                        
                         
                         }
 
@@ -234,7 +231,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
                             <?php
         
-        $sqlL = "SELECT * FROM log_alteracao LIMIT $inicio, $qnt_result_pg";
+        //$sqlL = "SELECT * FROM log_alteracao LIMIT $inicio, $qnt_result_pg";
         echo('<br>');
         echo($sqlL);
         echo('<br>');
@@ -260,9 +257,9 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 		//Limitar os link antes depois
 		$max_links = 2;
         ?>
-        </tbody>
-        </table>
-        <?php
+                    </tbody>
+                </table>
+                <?php
 		echo "<a href='log.php?pagina=1'>Primeira</a> ";
 		
 		for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
@@ -285,29 +282,29 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
         ?>
 
 
-                            <div class='footer'>
-                                <!-- Footer -->
-                                <footer class='text-center ' style='background-color: #f39822'>
-                                    <!-- Grid container -->
-                                    <div class='container p-4'>
-                                        <!-- Section: Text -->
+                <div class='footer'>
+                    <!-- Footer -->
+                    <footer class='text-center ' style='background-color: #f39822'>
+                        <!-- Grid container -->
+                        <div class='container p-4'>
+                            <!-- Section: Text -->
 
-                                        <!-- Section: Links -->
+                            <!-- Section: Links -->
 
-                                    </div>
-                                    <!-- Grid container -->
+                        </div>
+                        <!-- Grid container -->
 
-                                    <!-- Copyright -->
-                                    <div class='text-center p-3' style='background-color: #f38022'>
-                                        © 2021 Redepharma -
-                                        <a class='text-dark' href='https://github.com/eliabeguerreiro'>Eliabe Paz</a> &
-                                        <a class='text-dark' href='https://github.com/kcaiosouza'>Caio Souza</a>
-                                    </div>
-                                    <!-- Copyright -->
+                        <!-- Copyright -->
+                        <div class='text-center p-3' style='background-color: #f38022'>
+                            © 2021 Redepharma -
+                            <a class='text-dark' href='https://github.com/eliabeguerreiro'>Eliabe Paz</a> &
+                            <a class='text-dark' href='https://github.com/kcaiosouza'>Caio Souza</a>
+                        </div>
+                        <!-- Copyright -->
 
-                                </footer>
-                                <!-- Footer -->
-                            </div>
+                    </footer>
+                    <!-- Footer -->
+                </div>
             </div>
         </div>
 
