@@ -36,7 +36,7 @@ if(!$_SESSION['usuario']['nome']){
 <html lang="pt-br">
 
 <head>
-    <title>Home</title>
+    <title>Início | Inventário</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS CDN -->
@@ -46,19 +46,12 @@ if(!$_SESSION['usuario']['nome']){
     <link rel="stylesheet" href="styles.css">
     <!-- Link Google Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
-        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous">
-    </script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
-        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous">
-    </script>
 </head>
 
 <body>
 
     <nav class="navbar navbar-light bg-redeph">
-        <div class="container-fluid">
+        <div class="navbar-container">
             <button class="navbar-toggler bg-redeph-dark" id="sidebarCollapse" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +70,7 @@ if(!$_SESSION['usuario']['nome']){
         <!-- Sidebar -->
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <img src="../images/logo.png" alt="Logo" width="200px" height="auto" />
+                <img src="../images/logo_white.png" alt="Logo" width="200px" height="auto" />
             </div>
 
             <ul class="list-unstyled components">
@@ -86,7 +79,7 @@ if(!$_SESSION['usuario']['nome']){
 
             <ul class="list-unstyled components" id="sidebar-links">
                 <li>
-                    <a data-toggle="modal" data-target="#myModal">Sair</a>
+                    <a id="exit-btn" data-toggle="modal" data-target="#myModal">Sair</a>
                 </li>
                 <li>
                     <a href="index.php">Início</a>
@@ -199,24 +192,24 @@ if(!$_SESSION['usuario']['nome']){
                         $_SESSION['URL']= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
                         $url = explode('&', $_SESSION['URL']);
                         
-                        echo "<nav aria-label='Navegação de página'> <ul class='pagination justify-content-end'> <li class='page-item'> <a class='page-link' href='".$url['0']."&pagina=1' tabindex='-1'>Primeira</a> </li>";
+                        echo "<nav aria-label='Navegação de página' class='mt-3 mr-2'> <ul class='pagination justify-content-end'> <li class='page-item'> <a class='page-link-rp' href='".$url['0']."&pagina=1' tabindex='-1'>Primeira</a> </li>";
                         
                         for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
                             if($pag_ant >= 1){
                                 
-                                echo "<li class='page-item'><a class='page-link' href='".$url['0']."&pagina=$pag_ant'>$pag_ant</a> </li>";
+                                echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_ant'>$pag_ant</a> </li>";
                             }
                         }
                             
-                        echo "<li class='page-item disabled'><span class='page-link'>$pagina</span> </li>";
+                        echo "<li class='page-item disabled'><span class='page-link-rp'>$pagina</span> </li>";
                         
                         for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
                             if($pag_dep <= $quantidade_pg){
-                                echo "<li class='page-item'><a class='page-link' href='".$url['0']."&pagina=$pag_dep'>$pag_dep</a> </li>";
+                                echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_dep'>$pag_dep</a> </li>";
                             }
                         }
                         
-                        echo "<li class='page-item'><a class='page-link' href='".$url['0']."&pagina=$quantidade_pg'>Ultima</a> </li> </ul> </nav>";    
+                        echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$quantidade_pg'>Ultima</a> </li> </ul> </nav>";    
 
                     }
                      ?>
