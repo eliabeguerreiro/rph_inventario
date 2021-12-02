@@ -148,16 +148,12 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
                             <?php
         
-        $SendPesqItem = filter_input(INPUT_GET, 'id_pesquisa', FILTER_SANITIZE_STRING);
+       
         
-        if($SendPesqItem){
+        if($_GET){
+
 
             $sqlL = "SELECT * FROM itens WHERE '".$_GET['tipo']."' = '".$_GET['id_pesquisa']."' LIMIT $inicio, $qnt_result_pg";
-
-
-
-
-
 
             $sqlLog = mysqli_query($conn, $sqlL);                                      
         while ($log = mysqli_fetch_assoc($sqlLog)){
