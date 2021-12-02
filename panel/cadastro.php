@@ -91,7 +91,7 @@ if($_POST){
 
             <ul class="list-unstyled components" id="sidebar-links">
                 <li>
-                    <a data-toggle="modal" data-target="#myModal">Sair</a>
+                    <a id="exit-btn" data-toggle="modal" data-target="#myModal">Sair</a>
                 </li>
                 <li>
                     <a href="index.php">Início</a>
@@ -203,7 +203,7 @@ if($_POST){
                             </div>
 
                             <br><br>
-                            <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
+                            <input class="btn btn-redeph" type="submit" name="btnCadUsuario" value="Cadastrar"><br>
 
                         </form>
                     </center>
