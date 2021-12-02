@@ -3,6 +3,8 @@ session_start();
 include("../functions/connection.php");
 include("../functions/fun.php");
 
+
+
 if(!empty($_SESSION['usuario']['id_usuario']))
 {}
 else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
@@ -33,9 +35,9 @@ if($_POST){
     }
 
     //Fazendo upload dos dados pro BD
-    $upload_item = "INSERT INTO itens (id_item, identificador, tipo, data_compra, loja, modelo) 
+    $upload_item = "INSERT INTO itens (id_item, identificador, tipo, data_compra, loja, modelo, autor) 
     VALUES('" .$ctrl. "','" .$dados['identificador']. "','" .$dados['tipo']. "',
-    '" .$dados['data_c']. "','R" .$dados['loja']. "','" .$dados['modelo']. "');";
+    '" .$dados['data_c']. "','R" .$dados['loja']. "','" .$dados['modelo']. "','" .$_SESSION['usuario']['id_usuario']. "');";
     $upload = mysqli_query($conn, $upload_item);
 
      if(mysqli_insert_id($conn)){

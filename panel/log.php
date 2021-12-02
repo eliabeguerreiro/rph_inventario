@@ -8,10 +8,7 @@ if(!empty($_SESSION['usuario']['id_usuario']))
 {}
 else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
     header("Location: index.php");
-} 
-
-
-var_dump($_POST);
+} ;
 
 $pagina_atual = filter_input(INPUT_GET,'pagina', FILTER_SANITIZE_NUMBER_INT);		
 $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;                    
@@ -56,104 +53,24 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                 <span class='material-icons color-white'>reorder</span>
             </button>
             <div class="left-side">
-                <div class="dropdown">
-                    <button
-                        class="btn btn-redeph-search dropdown-toggle justify-content-center align-items-center d-flex"
-                        type="button" data-toggle="dropdown"><span class="material-icons">
-                            filter_alt
-                        </span>
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu" style="padding-left: 7px;">
-
-                        <li><a href='log.php'>Pesquisa</a></li>
-                        <li><a href='?filtro=data'>Data</a></li>
-                        <li><a href='?filtro=user'>Usuário</a></li>
-                    </ul>
-                </div>
-
-
 
                 <form method='GET' class="d-flex" id="searchbar" action="">
 
-                    <?php
-                    
-                    if($_GET){
-                        
-                        $filtro_atual = filter_input(INPUT_GET,'filtro', FILTER_SANITIZE_STRING);		
-                        $filtro = (!empty($filtro_atual)) ? $filtro_atual : 'nenhum';   
+                    <select class="form-control me-2" name="tipo">
 
-                        if($filtro){
-                             
-                            $primeiro_filtro = 
-                            $filtro; 
+                        <option value=''></option>
+                        <option value="id_item">Número ID</option>
+                        <option value="autor">Usuario</option>
+                        <option value="data_compra">Data</option>
 
+                    </select>
 
-                            if($filtro == 'nenhum'){
-                                //pesquisa sem filtro
-                                ?>
-                    <input class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
-                    <button class='btn btn-redeph-search busca-btn' type='submit'>
-                        <span class='material-icons'>search</span>
-
-
-                        <?php
-                            }
-                            if($filtro == 'data'){
-
-                                
-                                //$usuar = "SELECT * FROM usuarios where data_compra = '".$_POST['']."'";
-                                
-
-                                echo("                                
-                                <input class='form-control me-2' type='date' placeholder='Selecione a Data' aria-label='Search'>
-                                <button class='btn btn-redeph-search busca-btn' type='submit'>
-                                <span class='material-icons'>search</span>
-                                ");
-
-                            }
-
-                            if($filtro == 'user'){
-                                $sql_l = "SELECT nome FROM usuarios";
-                                $sql_log = mysqli_query($conn, $sql_l);
-                                $row_logs = mysqli_fetch_assoc($sql_log);
-
-                                echo("
-                                <select class='form-control' name='user'>
-                                    <option value=''>Selecione o usuario</option>
-                                    
-                                ");
-                                
-                                while ($row_logs = mysqli_fetch_assoc($usuarios)){
-                                    echo("<option value='".$user['nome']."'>".$user['nome']."</option>");                            
-                                }
-                                echo ("</select>
-                                
-                                <button class='btn btn-redeph-search busca-btn' type='submit'>
-                                <span class='material-icons'>search</span>");
-                            }
-                            
-                            
-                        
-                        }
-
-                    }else{
-                        echo("
-                            <input name='pesquisa' class='form-control me-2' type='search' placeholder='Procurar' aria-label='Search'>
-                            <button class='btn btn-redeph-search busca-btn' type='submit'>
-                                <span class='material-icons'>search</span>
-                                
-                                     
-                        ");
-                        
-                    }
-
-                ?>
+                    <input class="form-control me-2" name='id_pesquisa' type="search" placeholder="Procurar">
+                    <input class="btn btn-redeph-search busca-btn" type="submit" value="Pesquisar">
 
                 </form>
 
 
-
-                </button>
             </div>
         </div>
     </nav>
@@ -231,11 +148,18 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
                             <?php
         
-        //$sqlL = "SELECT * FROM log_alteracao LIMIT $inicio, $qnt_result_pg";
-        echo('<br>');
-        echo($sqlL);
-        echo('<br>');
-        $sqlLog = mysqli_query($conn, $sqlL);                                      
+        $SendPesqItem = filter_input(INPUT_GET, 'id_pesquisa', FILTER_SANITIZE_STRING);
+        
+        if($SendPesqItem){
+
+            $sqlL = "SELECT * FROM itens WHERE '".$_GET['tipo']."' = '".$_GET['id_pesquisa']."' LIMIT $inicio, $qnt_result_pg";
+
+
+
+
+
+
+            $sqlLog = mysqli_query($conn, $sqlL);                                      
         while ($log = mysqli_fetch_assoc($sqlLog)){
             
             echo("<tr>");
@@ -246,6 +170,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
             echo("<td>Tipo de alteração: ".$log['tipo']."</td>");
             echo("</tr>");
           }
+        
         //Paginção - Somar a quantidade de usuários
 		$result_pg = "SELECT COUNT(id) AS num_result FROM log_alteracao";
 		$resultado_pg = mysqli_query($conn, $result_pg);
@@ -278,6 +203,9 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 		
 		echo "<a href='log.php?pagina=$quantidade_pg'>Ultima</a>";
 
+        }     
+        
+        
 
         ?>
 
