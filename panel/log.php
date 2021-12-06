@@ -135,22 +135,15 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
         <div class='content' style='flex: auto;'>
             <div class='tabela-inventario'>
-                <table id='customers'>
-                    <tbody>
-                        <tr>
-                            <th>Log de ações</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
+                <p class="p-2" style="color: #8f1838; font-weight: bold; font-size: 20px;">Histórico de alterações</p>
 
-                            <?php
+                <?php
         
        
         
         if($_GET){
+
+            echo("<table id='customers'><tbody>");
             
             $sqlL = "SELECT * FROM log_alteracao WHERE ".$_GET['tipo']." LIKE '%".$_GET['id_pesquisa']."%' LIMIT $inicio, $qnt_result_pg";
             $sqlLog = mysqli_query($conn, $sqlL);                                      
@@ -181,19 +174,18 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                 
                 //Limitar os link antes depois
                 $max_links = 2;
+                echo("</tbody></table>");
                 ?>
-                    </tbody>
-                </table>
                 <?php
 
                 
                 $url = explode('&p', $_SESSION['URL']);
 
-                echo "<nav aria-label='Navegação de página' class='mt-3 mr-2'> <ul class='pagination justify-content-end'> <li class='page-item'> <a class='page-link-rp' href='".$url['0']."&pagina=1'>Primeira</a></li>";
+                echo "<nav aria-label='Navegação de página' class='mt-3 mr-2'> <ul class='pagination justify-content-end'> <li class='page-item'> <a class='page-link-rp' href='".$url['0']."&pagina=1' tabindex='-1'>Primeira</a></li>";
                 
                 for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
                     if($pag_ant >= 1){
-                        echo "<a href='".$url['0']."&pagina=$pag_ant'>$pag_ant</a> ";
+                        echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_ant'>$pag_ant</a></li> ";
                     }
                 }
                 
