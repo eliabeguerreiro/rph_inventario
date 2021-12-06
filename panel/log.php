@@ -78,7 +78,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
         <!-- Sidebar -->
         <nav id='sidebar' class=''>
             <div class='sidebar-header'>
-                <img src='../images/logo.png' alt='Logo' width='200px' height='auto' />
+                <img src='../images/logo_white.png' alt='Logo' width='200px' height='auto' />
             </div>
 
             <ul class='list-unstyled components'>
