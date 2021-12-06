@@ -60,8 +60,8 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
                         <option value=''></option>
                         <option value="id_item">Número ID</option>
-                        <option value="autor">Usuario</option>
-                        <option value="data_compra">Data</option>
+                        <option value="id_user">Usuario</option>
+                        <!--option value="data_compra">Data</option-->
 
                     </select>
 
@@ -151,9 +151,12 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
        
         
         if($_GET){
+            
 
-
-            $sqlL = "SELECT * FROM itens WHERE '".$_GET['tipo']."' = '".$_GET['id_pesquisa']."' LIMIT $inicio, $qnt_result_pg";
+            $sqlL = "SELECT * FROM log_alteracao WHERE ".$_GET['tipo']." LIKE '%".$_GET['id_pesquisa']."%' LIMIT $inicio, $qnt_result_pg";
+                    
+            echo($sqlL);
+            
 
             $sqlLog = mysqli_query($conn, $sqlL);                                      
         while ($log = mysqli_fetch_assoc($sqlLog)){

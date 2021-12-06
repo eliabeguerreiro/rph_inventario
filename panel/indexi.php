@@ -2,7 +2,7 @@
 session_start();
 
 
-$serverName = "10.7.0.4\sqlexpress";
+$serverName = "WIN-IAS58QF5FM5\sqlexpress";
 $connectionInfo = array( "Database"=>"RedePharmaOrdoucao", "UID"=>"redeph.suporte", "PWD"=>"R5@Od$4=6!3");
 $conn = sqlsrv_connect( $serverName, $connectionInfo);
 if( $conn === false ) {
