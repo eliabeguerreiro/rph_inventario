@@ -99,7 +99,7 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
                     <a href='print.php'>Imprimir</a>
                 </li>
                 <li>
-                    <a href='#'>Leitor</a>
+                    <a href='scan.php'>Leitor</a>
                 </li>
                 <li>
                     <a href='log.php'>Log de alterações</a>
@@ -152,13 +152,9 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
         
         if($_GET){
             
-
             $sqlL = "SELECT * FROM log_alteracao WHERE ".$_GET['tipo']." LIKE '%".$_GET['id_pesquisa']."%' LIMIT $inicio, $qnt_result_pg";
-                    
-            echo($sqlL);
-            
-
             $sqlLog = mysqli_query($conn, $sqlL);                                      
+        
         while ($log = mysqli_fetch_assoc($sqlLog)){
             
             echo("<tr>");
