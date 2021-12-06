@@ -156,7 +156,7 @@ if(!$_SESSION['usuario']['nome']){
                         $pesquisa = filter_input(INPUT_GET, 'id_pesquisa', FILTER_SANITIZE_STRING);
                         $result_pesquisa = "SELECT * FROM itens WHERE id_item LIKE '%$pesquisa%' LIMIT $inicio, $qnt_result_pg";
                         $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);
-                        
+                            
                         
                     while ($row_usuario = mysqli_fetch_assoc($resultado_pesquisa)){
                     
@@ -197,15 +197,15 @@ if(!$_SESSION['usuario']['nome']){
                         for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
                             if($pag_ant >= 1){
                                 
-                                echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_ant'>$pag_ant</a> </li>";
+                                echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_ant'>$pag_ant</a></li>";
                             }
                         }
                             
-                        echo "<li class='page-item disabled'><span class='page-link-rp'>$pagina</span> </li>";
+                        echo "<li class='page-item disabled'><span class='page-link-rp'>$pagina</span></li>";
                         
                         for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
                             if($pag_dep <= $quantidade_pg){
-                                echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_dep'>$pag_dep</a> </li>";
+                                echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_dep'>$pag_dep</a></li>";
                             }
                         }
                         
@@ -214,7 +214,7 @@ if(!$_SESSION['usuario']['nome']){
                     }
                      ?>
 
-                </table>
+                
                 <!-- Footer -->
                 <footer class="text-center " style="background-color: #f39822">
 

@@ -13,7 +13,7 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
 $pagina_atual = filter_input(INPUT_GET,'pagina', FILTER_SANITIZE_NUMBER_INT);		
 $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;                    
 //Setar a quantidade de itens por pagina
-$qnt_result_pg = 5;                  
+$qnt_result_pg = 4;                  
 //calcular o inicio 
 $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 
@@ -155,49 +155,59 @@ $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
             $sqlL = "SELECT * FROM log_alteracao WHERE ".$_GET['tipo']." LIKE '%".$_GET['id_pesquisa']."%' LIMIT $inicio, $qnt_result_pg";
             $sqlLog = mysqli_query($conn, $sqlL);                                      
         
-        while ($log = mysqli_fetch_assoc($sqlLog)){
+            while ($log = mysqli_fetch_assoc($sqlLog)){
+                
+                echo("<tr>");
+                echo("<td>ID do item: ".$log['id_item']."</td>");
+                echo("<td>ID do usuario: ".$log['id_user']."</td>");
+                echo("<td>Descrição da ação: ".$log['detalhe']."</td>");
+                echo("<td>Data de alteração: ".$log['data_altera']."</td>");
+                echo("<td>Tipo de alteração: ".$log['tipo']."</td>");
+                echo("</tr>");
+            }
+
+            if($sqlLog){
+
+
             
-            echo("<tr>");
-            echo("<td>ID do item: ".$log['id_item']."</td>");
-            echo("<td>ID do usuario: ".$log['id_user']."</td>");
-            echo("<td>Descrição da ação: ".$log['detalhe']."</td>");
-            echo("<td>Data de alteração: ".$log['data_altera']."</td>");
-            echo("<td>Tipo de alteração: ".$log['tipo']."</td>");
-            echo("</tr>");
-          }
-        
-        //Paginção - Somar a quantidade de usuários
-		$result_pg = "SELECT COUNT(id) AS num_result FROM log_alteracao";
-		$resultado_pg = mysqli_query($conn, $result_pg);
-		$row_pg = mysqli_fetch_assoc($resultado_pg);
-		//echo $row_pg['num_result'];
-		//Quantidade de pagina 
-		$quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
-		
-		//Limitar os link antes depois
-		$max_links = 2;
-        ?>
+            
+                //Paginção - Somar a quantidade de usuários
+                $result_pg = "SELECT COUNT(id) AS num_result FROM log_alteracao";
+                $resultado_pg = mysqli_query($conn, $result_pg);
+                $row_pg = mysqli_fetch_assoc($resultado_pg);
+                //echo $row_pg['num_result'];
+                //Quantidade de pagina 
+                $quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
+                
+                //Limitar os link antes depois
+                $max_links = 2;
+                ?>
                     </tbody>
                 </table>
                 <?php
-		echo "<a href='log.php?pagina=1'>Primeira</a> ";
-		
-		for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
-			if($pag_ant >= 1){
-				echo "<a href='log.php?pagina=$pag_ant'>$pag_ant</a> ";
-			}
-		}
-			
-		echo "$pagina ";
-		
-		for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
-			if($pag_dep <= $quantidade_pg){
-				echo "<a href='log.php?pagina=$pag_dep'>$pag_dep</a> ";
-			}
-		}
-		
-		echo "<a href='log.php?pagina=$quantidade_pg'>Ultima</a>";
 
+                
+                $url = explode('&p', $_SESSION['URL']);
+
+                echo "<nav aria-label='Navegação de página' class='mt-3 mr-2'> <ul class='pagination justify-content-end'> <li class='page-item'> <a class='page-link-rp' href='".$url['0']."&pagina=1'>Primeira</a></li>";
+                
+                for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
+                    if($pag_ant >= 1){
+                        echo "<a href='".$url['0']."&pagina=$pag_ant'>$pag_ant</a> ";
+                    }
+                }
+                
+                echo "<li class='page-item disabled'><span class='page-link-rp'>$pagina</span></li>";
+            
+                for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
+                    if($pag_dep <= $quantidade_pg){
+                        echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_dep'>$pag_dep</a></li>";
+                    }
+                }
+            
+                echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$quantidade_pg'>Ultima</a></li></ul></nav>";
+
+            }
         }     
         
         
