@@ -14,7 +14,7 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
 <html lang="pt-br">
 
 <head>
-    <title>Imprimir</title>
+    <title>Imprimir | Inventário</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS CDN -->
@@ -34,6 +34,14 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
 </head>
 
 <body>
+    <nav class="navbar navbar-light bg-redeph noprint mb-3">
+        <div class="navbar-container">
+            <button onclick="location.href='./'" class="navbar-toggler bg-redeph-dark">
+                <span class="material-icons color-white">arrow_back</span>
+            </button>
+        </div>
+
+    </nav>
     <div class='container'>
         <div>
             <center>
@@ -46,13 +54,15 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                         <div class="col-md-8">
                             <input class="form-control" type="text" name="identificador"
                                 placeholder="Digite um codigo identificador">
-                            <small id="emailHelp" class="form-text text-muted">A pagina suporta apenas 42 qr-codes. Digite o ID de um produto e filtre a pagina, que aparecera o qr-code deste e dos proximos 41 produtos em ordem de cadastro.</small>
+                            <small id="emailHelp" class="form-text text-muted">A pagina suporta apenas 42 qr-codes.
+                                Digite o ID de um produto e filtre a pagina, que aparecera o qr-code deste e dos
+                                proximos 41 produtos em ordem de cadastro.</small>
                         </div>
 
 
 
                         <br><br>
-                        <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Filtrar"><br>
+                        <input class="btn btn-redeph" type="submit" name="btnCadUsuario" value="Filtrar"><br>
 
                     </form>
                     <div class="qr-container mt-3" style="display: flex; flex-wrap: wrap; flex-direction: row;">
@@ -81,12 +91,12 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                 
                 
                 ?>
-                </div>
+                    </div>
                     <form>
-                        <input  class='noprint' type="button" value="Print this page" onClick="window.print()" />
+                        <input class='btn btn-redeph mb-3 noprint' type="button" value="Imprimir a página" onClick="window.print()" />
                     </form>
-                    
-                    
+
+
         </div>
     </div>
 </body>
