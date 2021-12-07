@@ -77,14 +77,29 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                     $aux .= 's=10$';
                     $aux .= 't=P';
                     
-                    echo("<div class='col'><center><div class='card'>");
+                    echo("<div class='col' id='".$itens['id_item']."'><center><div class='card'>");
                     
                     
                     echo("<div class='qr_code'>
                     <img src='".$aux."' alt=''><br>
                     <a style='font-size: 30px;'>".$itens['id_item']."</a>
+                    <br>
+                    <input checked onchange='change_".$itens['id_item']."()' type='checkbox' id='print' class='noprint' value='Imprimir'>
                     </div>");
-                    
+
+                echo("
+                    <script>
+                        function change_".$itens['id_item']."(){
+                            var NAME = document.getElementById('".$itens['id_item']."');
+                            var currentClass = NAME.className;
+                            if (currentClass == 'col noprint ".$itens['id_item']."') {
+                                NAME.className = 'col print ".$itens['id_item']."';
+                            } else {
+                                NAME.className = 'col noprint ".$itens['id_item']."';
+                            }
+                        }   
+                    </script>
+                ");
                     
                     echo("</div></center><br><br></div>");
                 }
@@ -93,7 +108,8 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                 ?>
                     </div>
                     <form>
-                        <input class='btn btn-redeph mb-3 noprint' type="button" value="Imprimir a página" onClick="window.print()" />
+                        <input class='btn btn-redeph mb-3 noprint' type="button" value="Imprimir a página"
+                            onClick="window.print()" />
                     </form>
 
 
