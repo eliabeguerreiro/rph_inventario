@@ -36,9 +36,9 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
 <body>
     <nav class="navbar navbar-light bg-redeph noprint mb-3">
         <div class="navbar-container">
-            <button onclick="location.href='./'" class="navbar-toggler bg-redeph-dark">
-                <span class="material-icons color-white">arrow_back</span>
-            </button>
+            <div onclick="location.href='./'" class="btn">
+                <i class="fas fa-arrow-left" style="color: var(--redeph); font-size: 1.75rem"></i>
+            </div>
         </div>
 
     </nav>
@@ -62,12 +62,12 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
 
 
                         <br><br>
-                        <input class="btn btn-redeph" type="submit" name="btnCadUsuario" value="Filtrar"><br>
+                        <input class="btn btn-primary" type="submit" name="btnCadUsuario" value="Filtrar"><br>
 
                     </form>
                     <div class="qr-container mt-3" style="display: flex; flex-wrap: wrap; flex-direction: row;">
                         <?php              
-                $sql_ite = "SELECT * FROM `itens` LIMIT 4";
+                $sql_ite = "SELECT * FROM `itens` LIMIT 42";
                 $sql_item = mysqli_query($conn, $sql_ite);
 
                 while ($itens = mysqli_fetch_assoc($sql_item)){    
@@ -81,8 +81,9 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                     
                     
                     echo("<div class='qr_code'>
+                    <small>Patrimonio Redepharma</small>
                     <img src='".$aux."' alt=''><br>
-                    <a style='font-size: 50px;'>".$itens['id_item']."</a>
+                    <a style='font-size: 30px;'>".$itens['id_item']."</a>
                     <br>
                     <input checked onchange='change_".$itens['id_item']."()' type='checkbox' id='print' class='noprint' value='Imprimir'>
                     </div>");
@@ -108,7 +109,7 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                 ?>
                     </div>
                     <form>
-                        <input class='btn btn-redeph mb-3 noprint' type="button" value="Imprimir a página"
+                        <input class='btn btn-primary mb-3 noprint' type="button" value="Imprimir a página"
                             onClick="window.print()" />
                     </form>
 

@@ -193,5 +193,3 @@ if($dados){
     </body>
 
     </html>
-
-    <?php
