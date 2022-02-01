@@ -362,6 +362,11 @@ ul ul a {
     cursor: pointer;
   }
 
+  .qr_code img {
+    width: 350px;
+    height: 350px;
+  }
+
   .page-link-rp {
       position:relative;
       display:block;

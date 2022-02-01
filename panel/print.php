@@ -67,7 +67,7 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                     </form>
                     <div class="qr-container mt-3" style="display: flex; flex-wrap: wrap; flex-direction: row;">
                         <?php              
-                $sql_ite = "SELECT * FROM `itens` LIMIT 42";
+                $sql_ite = "SELECT * FROM `itens` LIMIT 4";
                 $sql_item = mysqli_query($conn, $sql_ite);
 
                 while ($itens = mysqli_fetch_assoc($sql_item)){    
@@ -82,7 +82,7 @@ else{$_SESSION['msg']='Você precisa logar para acessar o painel!</br>';
                     
                     echo("<div class='qr_code'>
                     <img src='".$aux."' alt=''><br>
-                    <a style='font-size: 30px;'>".$itens['id_item']."</a>
+                    <a style='font-size: 50px;'>".$itens['id_item']."</a>
                     <br>
                     <input checked onchange='change_".$itens['id_item']."()' type='checkbox' id='print' class='noprint' value='Imprimir'>
                     </div>");
