@@ -145,17 +145,24 @@ if(!$_SESSION['usuario']['nome']){
                         echo("<table id='customers'><tbody>");
 
                         $pesquisa = filter_input(INPUT_GET, 'id_pesquisa', FILTER_SANITIZE_STRING);
-                        $result_pesquisa = "SELECT * FROM itens WHERE id_item LIKE '%$pesquisa%' LIMIT $inicio, $qnt_result_pg";
+                        $result_pesquisa = "SELECT * FROM itens WHERE id_item LIKE '%$pesquisa%' OR identificador LIKE '%$pesquisa%'  ORDER BY id DESC LIMIT $inicio, $qnt_result_pg";
                         $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);
                             
                         
                     while ($row_usuario = mysqli_fetch_assoc($resultado_pesquisa)){
                     
+                        $au = "SELECT nome FROM usuarios WHERE id_user = ".$row_usuario['autor']."";
+                        $aut = mysqli_query($conn_user, $au);
+                        $autor = mysqli_fetch_assoc($aut);
+
+
+
                         echo("
                         <tr>
                             <td>ID: ".$row_usuario['id_item']."</td>
                             <td>Identificador: ".$row_usuario['identificador']."</td>  
                             <td>Loja: ".$row_usuario['loja']."</td>
+                            <td>Autor: ".$autor['nome']."</td>
                             <td>Modelo: ".$row_usuario['modelo']."</td>
                             <td></td>
 
@@ -200,6 +207,79 @@ if(!$_SESSION['usuario']['nome']){
                         }
                         
                         echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$quantidade_pg'>Ultima</a> </li> </ul> </nav>";    
+
+                    }else{
+
+                        echo("<table id='customers'><tbody>");
+
+                        $pesquisa = filter_input(INPUT_GET, 'id_pesquisa', FILTER_SANITIZE_STRING);
+                        $result_pesquisa = "SELECT * FROM itens ORDER BY id DESC LIMIT $inicio, $qnt_result_pg";
+                        $resultado_pesquisa = mysqli_query($conn, $result_pesquisa);
+                            
+                        
+                    while ($row_usuario = mysqli_fetch_assoc($resultado_pesquisa)){
+                    
+                        $au = "SELECT nome FROM usuarios WHERE id_user = ".$row_usuario['autor']."";
+                        $aut = mysqli_query($conn_user, $au);
+                        $autor = mysqli_fetch_assoc($aut);
+
+
+
+                        echo("
+                        <tr>
+                            <td>ID: ".$row_usuario['id_item']."</td>
+                            <td>Identificador: ".$row_usuario['identificador']."</td>  
+                            <td>Loja: ".$row_usuario['loja']."</td>
+                            <td>Autor: ".$autor['nome']."</td>
+                            <td>Modelo: ".$row_usuario['modelo']."</td>
+                            <td></td>
+
+                            <td> <a href='edit.php?del=n&id=".$row_usuario['id_item']."' type='button' class='btn btn-primary'>Editar</a>  
+                            <a href='edit.php?del=y&id=".$row_usuario['id_item']."' type='button' class='btn btn-danger'>Apagar</a> </td>
+                        </tr>
+                        
+                        ");
+                        ?>
+                <?php
+                        }
+
+                        $result_pg = "SELECT COUNT(id) AS num_result FROM itens";
+                        $resultado_pg = mysqli_query($conn, $result_pg);
+                        $row_pg = mysqli_fetch_assoc($resultado_pg);
+                        //Quantidade de pagina 
+                        $quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
+                        
+                        //Limitar os link antes depois
+                        $max_links = 2;
+                        echo("</tbody></table>");
+                        ?>
+                <?php   
+                        $_SESSION['URL']= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+                        $url = explode('&', $_SESSION['URL']);
+                        
+                        echo "<nav aria-label='Navegação de página' class='mt-3 mr-2'> <ul class='pagination justify-content-end'> <li class='page-item'> <a class='page-link-rp' href='".$url['0']."&pagina=1' tabindex='-1'>Primeira</a> </li>";
+                        
+                        for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
+                            if($pag_ant >= 1){
+                                
+                                echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_ant'>$pag_ant</a></li>";
+                            }
+                        }
+                            
+                        echo "<li class='page-item disabled'><span class='page-link-rp'>$pagina</span></li>";
+                        
+                        for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
+                            if($pag_dep <= $quantidade_pg){
+                                echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$pag_dep'>$pag_dep</a></li>";
+                            }
+                        }
+                        
+                        echo "<li class='page-item'><a class='page-link-rp' href='".$url['0']."&pagina=$quantidade_pg'>Ultima</a> </li> </ul> </nav>";    
+
+
+
+
+
 
                     }
                      ?>

@@ -15,7 +15,7 @@ if($_POST){
     //verificando a existencia do usuario no banco de dados(se sim, confirma senha)
 
     $result_user = "SELECT * FROM `usuarios` WHERE usuario = '$login' LIMIT 1;";
-    $resultado_user = mysqli_query($conn, $result_user);
+    $resultado_user = mysqli_query($conn_user, $result_user);
 
 
       if($resultado_user){

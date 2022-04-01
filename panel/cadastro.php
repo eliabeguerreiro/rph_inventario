@@ -22,16 +22,16 @@ if($_POST){
     $total = mysqli_num_rows($sql_controle);
     $controle = $total + 1;
     if($controle < 10){
-        $ctrl = $_SESSION['usuario']['id_usuario']."0000".$controle; 
+        $ctrl = "0000".$controle; 
     
     }elseif($controle < 100){
-        $ctrl = $_SESSION['usuario']['id_usuario']."000".$controle; 
+        $ctrl = "000".$controle; 
         
     }elseif($controle < 1000){
-        $ctrl = $_SESSION['usuario']['id_usuario']."00".$controle; 
+        $ctrl = "00".$controle; 
         
     }elseif($controle < 10000){
-        $ctrl = $_SESSION['usuario']['id_usuario']."0".$controle; 
+        $ctrl = "0".$controle; 
     }
 
     //Fazendo upload dos dados pro BD
