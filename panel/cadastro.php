@@ -179,6 +179,7 @@ if($_POST){
                                     <option value="equipamento_rede">Equipamento de Rede</option>
                                     <option value="nobrake">Nobrake</option>
                                     <option value="leitor">Leitor</option>
+                                    <option value="servidor">Servidor</option>
                                     <option value="impressora">Impressora</option>
                                     <option value="equipamento_audiovisual">Equipamento Audiovisual</option>
                                 </select>
